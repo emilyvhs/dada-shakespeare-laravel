@@ -26,19 +26,6 @@
 
 <a href="/plays"><h2>All plays</h2></a>
 
-<form>
-    @csrf
-    <label for="singlePlay">Choose a play</label>
-    <select id="singlePlay" name="singlePlay">
-        <option value="" disabled selected hidden>Choose a play</option>
-        @foreach($works as $work)
-            <option>{{ $work->Title }}</option>
-        @endforeach
-    </select>
-    <input type="submit" value="Go to play stats" />
-</form>
-
-
 </body>
 
 </html>
