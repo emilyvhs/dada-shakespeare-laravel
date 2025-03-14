@@ -25,6 +25,7 @@
 <h1>Dada Shakespeare</h1>
 
 <a href="/plays"><h2>All plays</h2></a>
+<a href="/chapters"><h2>All chapters</h2></a>
 
 </body>
 
