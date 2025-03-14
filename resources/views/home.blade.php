@@ -26,6 +26,7 @@
 
 <a href="/plays"><h2>All plays</h2></a>
 <a href="/chapters"><h2>All chapters</h2></a>
+<a href="/characters"><h2>All characters</h2></a>
 
 </body>
 
