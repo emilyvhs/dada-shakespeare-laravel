@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chapter;
+use App\Models\Paragraph;
 
-class ChapterController extends Controller
+class ParagraphController extends Controller
 {
     public function all()
     {
-        $chapters = Chapter::all()
+        $paragraphs = Paragraph::all()
             ->where('WorkID', '!=', 'loverscomplaint')
             ->where('WorkID', '!=', 'passionatepilgrim')
             ->where('WorkID', '!=', 'phoenixturtle')
@@ -16,6 +16,6 @@ class ChapterController extends Controller
             ->where('WorkID', '!=', 'sonnets')
             ->where('WorkID', '!=', 'venusadonis');
 
-        return $chapters;
+        return $paragraphs;
     }
 }

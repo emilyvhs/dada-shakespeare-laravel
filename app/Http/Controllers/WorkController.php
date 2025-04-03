@@ -6,7 +6,6 @@ use App\Models\Work;
 
 class WorkController extends Controller
 {
-
     public function allPlays()
     {
         $works = Work::all()

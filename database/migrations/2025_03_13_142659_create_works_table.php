@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('works', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->string('WorkID');
+            $table->string('Title');
+            $table->string('LongTitle');
+            $table->string('ShortTitle');
+            $table->integer('Date');
+            $table->string('GenreType');
+            $table->string('Notes');
+            $table->string('Source');
+            $table->integer('TotalWords');
+            $table->integer('TotalParagraphs');
         });
     }
 
