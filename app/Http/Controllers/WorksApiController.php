@@ -13,7 +13,7 @@ class WorksApiController extends Controller
 
         return response()->json([
             'message' => 'Found all works',
-            'data' => $works
+            'data' => $works,
         ]);
     }
 
@@ -21,7 +21,7 @@ class WorksApiController extends Controller
     {
         return response()->json([
             'message' => 'Found single work',
-            'data' => $work
+            'data' => $work,
         ]);
     }
 }
