@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Work;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
 
 class WorksApiController extends Controller
 {
@@ -25,5 +24,4 @@ class WorksApiController extends Controller
             'data' => $work,
         ]);
     }
-
 }
