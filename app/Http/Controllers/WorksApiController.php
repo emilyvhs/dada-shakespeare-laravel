@@ -9,7 +9,9 @@ class WorksApiController extends Controller
 {
     public function all(): JsonResponse
     {
-        $works = Work::all();
+        $works = Work::all()
+            ->where('GenreType', '!=', 'p')
+            ->where('GenreType', '!=', 's');
 
         return response()->json([
             'message' => 'Found all works',
