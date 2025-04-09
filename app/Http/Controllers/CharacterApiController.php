@@ -32,6 +32,12 @@ class CharacterApiController extends Controller
         $characterList = DB::table('Characters')
         ->where('Works', '=', $WorkID)->get();
 
+        if(count($characterList) === 0) {
+            return response()->json([
+                'message' => 'Play not found'
+            ], 404);
+        }
+
         return response()->json([
             'message' => 'Found all characters for selected play',
             'data' => $characterList,
