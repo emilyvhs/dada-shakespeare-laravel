@@ -35,3 +35,5 @@ Route::get('/paragraphs/{paragraph:ParagraphID}', [ParagraphApiController::class
         'message' => 'Paragraph not found',
     ], 404);
 });
+
+Route::get('/paragraphs/work/{WorkID}', [ParagraphApiController::class, 'selectedPlay']);
