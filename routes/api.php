@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChapterApiController;
 use App\Http\Controllers\CharacterApiController;
+use App\Http\Controllers\ParagraphApiController;
 use App\Http\Controllers\WorksApiController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,12 @@ Route::get('/characters', [CharacterApiController::class, 'all']);
 Route::get('/characters/{character:CharID}', [CharacterApiController::class, 'find'])->missing(function () {
     return response()->json([
         'message' => 'Character not found',
+    ], 404);
+});
+
+Route::get('/paragraphs', [ParagraphApiController::class, 'all']);
+Route::get('/paragraphs/{paragraph:ParagraphID}', [ParagraphApiController::class, 'find'])->missing(function () {
+    return response()->json([
+        'message' => 'Paragraph not found',
     ], 404);
 });
