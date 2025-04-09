@@ -26,6 +26,7 @@ Route::get('/characters/{character:CharID}', [CharacterApiController::class, 'fi
         'message' => 'Character not found',
     ], 404);
 });
+Route::get('/characters/work/{WorkID}', [CharacterApiController::class, 'selectedPlay']);
 
 Route::get('/paragraphs', [ParagraphApiController::class, 'all']);
 Route::get('/paragraphs/{paragraph:ParagraphID}', [ParagraphApiController::class, 'find'])->missing(function () {
