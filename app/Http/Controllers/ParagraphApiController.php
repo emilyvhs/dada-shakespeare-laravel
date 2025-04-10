@@ -29,7 +29,11 @@ class ParagraphApiController extends Controller
     public function selectedPlay(string $WorkID): JsonResponse
     {
         $paragraphList = DB::table('Paragraphs')
-            ->where('WorkID', '=', $WorkID)->get();
+            ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharName')
+            ->where('WorkID', '=', $WorkID)
+            ->orderBy('ParagraphNum')
+            ->get();
+
 
         if(count($paragraphList) === 0) {
             return response()->json([
