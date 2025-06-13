@@ -124,6 +124,17 @@ Content:
 ```
 Note - route returns 945 items in total (only one shown above for clarity/brevity).
 
+**Error response:**
+
+Code: 404 \
+Content:
+
+```json
+{
+    "message": "No chapters found"
+}
+```
+
 ### Return single chapter
 
 **URL**
