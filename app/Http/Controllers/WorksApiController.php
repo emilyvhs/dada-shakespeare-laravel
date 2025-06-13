@@ -11,6 +11,12 @@ class WorksApiController extends Controller
     {
         $works = Work::all();
 
+        if(!$works) {
+            return response()->json([
+                'message' => 'No works found'
+            ], 404);
+        }
+
         return response()->json([
             'message' => 'Found all works',
             'data' => $works,
