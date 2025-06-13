@@ -38,6 +38,17 @@ Content:
 ```
 Note - route returns 37 items in total (only one shown above for clarity/brevity).
 
+**Error response:**
+
+Code: 404 \
+Content:
+
+```json
+{
+    "message": "No works found"
+}
+```
+
 ### Return single work
 
 **URL**
@@ -367,7 +378,7 @@ Content:
 
 ```json
 {
-    "message": "Found all paragrphs for selected play",
+    "message": "Found all paragraphs for selected play",
     "data": [
         {
             "WorkID": "romeojuliet",
@@ -393,3 +404,65 @@ Content:
 ```
 
 Note - example above returns 989 items in total (only one shown above for clarity/brevity).
+
+**Error response:**
+
+Code: 404 \
+Content:
+
+```json
+{
+    "message" : "Play not found"
+}
+```
+
+### Return all paragraphs for a specified character
+
+**URL**
+
+/api/paragraphs/character/{CharID}
+
+**Method:**
+
+`GET`
+
+**Success response:**
+
+Code: 200 \
+Content:
+
+```json
+{
+    "message": "Found all paragraphs for selected character",
+    "data": [
+        {
+            "WorkID": "macbeth",
+            "ParagraphID": 877346,
+            "ParagraphNum": 138,
+            "CharID": "macbeth",
+            "PlainText": "So foul and fair a day I have not seen.\n",
+            "PhoneticText": " S FL ANT FR A T I HF NT SN ",
+            "StemText": " so foul and fair a dai i have not seen ",
+            "ParagraphType": "b",
+            "Section": 1,
+            "Chapter": 3,
+            "CharCount": 40,
+            "WordCount": 10
+        }
+    ]
+}
+```
+
+Note - example above returns 146 items in total (only one shown above for clarity/brevity).
+
+**Error response:**
+
+Code: 404 \
+Content:
+
+```json
+{
+    "message" : "Character not found"
+}
+```
+
