@@ -12,6 +12,12 @@ class ParagraphApiController extends Controller
     {
         $paragraphs = Paragraph::all();
 
+        if(!$paragraphs) {
+            return response()->json([
+                'message' => 'No paragraphs found'
+            ], 404);
+        }
+
         return response()->json([
             'message' => 'Found all paragraphs',
             'data' => $paragraphs,
