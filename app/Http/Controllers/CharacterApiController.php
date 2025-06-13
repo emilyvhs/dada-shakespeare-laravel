@@ -13,6 +13,12 @@ class CharacterApiController extends Controller
     {
         $characters = Character::all();
 
+        if(!$characters) {
+            return response()->json([
+                'message' => 'No characters found'
+            ], 404);
+        }
+
         return response()->json([
             'message' => 'Found all characters',
             'data' => $characters,

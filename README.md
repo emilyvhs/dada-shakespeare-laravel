@@ -208,6 +208,17 @@ Content:
 ```
 Note - route returns 1265 items in total (only one shown above for clarity/brevity).
 
+**Error response:**
+
+Code: 404 \
+Content:
+
+```json
+{
+    "message": "No characters found"
+}
+```
+
 ### Return single character
 
 **URL**
@@ -333,7 +344,7 @@ Content:
 
 ```json
 {
-    "message": "No chapters found"
+    "message": "No paragraphs found"
 }
 ```
 
