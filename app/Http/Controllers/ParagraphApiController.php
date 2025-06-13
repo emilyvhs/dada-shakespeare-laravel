@@ -46,4 +46,23 @@ class ParagraphApiController extends Controller
             'data' => $paragraphList,
         ]);
     }
+
+    public function selectedCharacter(string $CharID): JsonResponse
+    {
+        $paragraphList = DB::table('Paragraphs')
+            ->where('CharID', '=', $CharID)
+            ->orderBy('ParagraphNum')
+            ->get();
+
+        if(count($paragraphList) === 0) {
+            return response()->json([
+                'message' => 'Character not found'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Found all paragraphs for selected character',
+            'data' => $paragraphList,
+        ]);
+    }
 }
