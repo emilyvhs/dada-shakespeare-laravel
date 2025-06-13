@@ -11,6 +11,12 @@ class ChapterApiController extends Controller
     {
         $chapters = Chapter::all();
 
+        if(!$chapters) {
+            return response()->json([
+                'message' => 'No chapters found'
+            ], 404);
+        }
+
         return response()->json([
             'message' => 'Found all chapters',
             'data' => $chapters,
