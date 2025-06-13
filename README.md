@@ -292,6 +292,17 @@ Content:
 
 Note - example above returns 18 items in total (only one shown above for clarity/brevity).
 
+**Error response:**
+
+Code: 404 \
+Content:
+
+```json
+{
+    "message" : "Play not found"
+}
+```
+
 
 ## Paragraphs
 
