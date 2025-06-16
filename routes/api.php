@@ -43,7 +43,9 @@ Route::get('/paragraphs/{paragraph:ParagraphID}', [ParagraphApiController::class
         'message' => 'Paragraph not found',
     ], 404);
 });
-//get all paragraphs for a specified work
+//get and randomly shuffle all paragraphs for a specified work
+Route::get('/paragraphs/work/shuffle/{WorkID}', [ParagraphApiController::class, 'shuffleSelectedPlay']);
+//get all paragraphs for a specified work (in original order)
 Route::get('/paragraphs/work/{WorkID}', [ParagraphApiController::class, 'selectedPlay']);
 //get all paragraphs for a specified character
 Route::get('/paragraphs/character/{character:CharID}', [ParagraphApiController::class, 'selectedCharacter']);
