@@ -47,5 +47,7 @@ Route::get('/paragraphs/{paragraph:ParagraphID}', [ParagraphApiController::class
 Route::get('/paragraphs/work/shuffle/{WorkID}', [ParagraphApiController::class, 'shuffleSelectedPlay']);
 //get all paragraphs for a specified work (in original order)
 Route::get('/paragraphs/work/{WorkID}', [ParagraphApiController::class, 'selectedPlay']);
-//get all paragraphs for a specified character
+//get and randomly shuffle all paragraphs for a specified work
+Route::get('/paragraphs/character/shuffle/{CharID}', [ParagraphApiController::class, 'shuffleSelectedCharacter']);
+//get all paragraphs for a specified character (in original order)
 Route::get('/paragraphs/character/{character:CharID}', [ParagraphApiController::class, 'selectedCharacter']);

@@ -91,4 +91,23 @@ class ParagraphApiController extends Controller
             'data' => $shuffledParagraphList
         ]);
     }
+
+    public function shuffleSelectedCharacter(string $CharID): JsonResponse
+    {
+        $shuffledParagraphList = DB::table('Paragraphs')
+            ->where('CharID', '=', $CharID)
+            ->inRandomOrder()
+            ->get();
+
+        if(count($shuffledParagraphList) === 0) {
+            return response()->json([
+                'message' => 'Character not found'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Shuffled all paragraphs for selected character',
+            'data' => $shuffledParagraphList
+        ]);
+    }
 }
