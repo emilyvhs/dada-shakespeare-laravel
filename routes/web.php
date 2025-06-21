@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ResultsController;
 use Illuminate\Support\Facades\Route;
 
 //display homepage and Dada form
 Route::get('/', [HomeController::class, 'displayDadaForm']);
+
+//display results
+Route::post('/results', [ResultsController::class, 'display']);
 
 //get all works
 //get single work

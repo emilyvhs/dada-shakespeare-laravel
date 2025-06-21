@@ -22,20 +22,9 @@
 
 <body>
 
-<h1>Dada Shakespeare</h1>
+<h1>{{ $title }}</h1>
 
-<form method="POST" action="{{ url('results') }}">
-    @csrf
-    <label for="work">Choose a play:</label>
-    <select name="work" id="work">
-        <option value="">No play selected</option>
-        @foreach ($works as $work)
-            <option value="{{ $work->LongTitle }}">{{ $work->Title }}</option>
-        @endforeach
-    </select>
 
-    <input type="submit" value="Dada Shakespeare!" name="submit" id="submit" />
-</form>
 
 </body>
 </html>
