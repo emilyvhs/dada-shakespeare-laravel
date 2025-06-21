@@ -3,13 +3,13 @@
 use App\Http\Controllers\ChapterApiController;
 use App\Http\Controllers\CharacterApiController;
 use App\Http\Controllers\ParagraphApiController;
-use App\Http\Controllers\WorksApiController;
+use App\Http\Controllers\WorkApiController;
 use Illuminate\Support\Facades\Route;
 
 //get all works
-Route::get('/works', [WorksApiController::class, 'all']);
+Route::get('/works', [WorkApiController::class, 'all']);
 //get single work
-Route::get('/works/{work:WorkID}', [WorksApiController::class, 'find'])->missing(function () {
+Route::get('/works/{work:WorkID}', [WorkApiController::class, 'find'])->missing(function () {
     return response()->json([
         'message' => 'Work not found',
     ], 404);

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Work;
 use Illuminate\Http\JsonResponse;
 
-class WorksApiController extends Controller
+class WorkApiController extends Controller
 {
     public function all(): JsonResponse
     {
