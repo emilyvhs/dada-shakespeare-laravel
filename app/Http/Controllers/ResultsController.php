@@ -9,7 +9,11 @@ class ResultsController extends Controller
 {
     public function display(Request $request)
     {
-        $title = $request->work;
+        $request->validate([
+            'title' => 'required|string|exists:Works,LongTitle'
+        ]);
+
+        $title = $request->title;
 
         return view('results', [
             'title' => $title,

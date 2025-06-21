@@ -26,13 +26,16 @@
 
 <form method="POST" action="{{ url('results') }}">
     @csrf
-    <label for="work">Choose a play:</label>
-    <select name="work" id="work">
+    <label for="title">Choose a play:</label>
+    <select name="title" id="title">
         <option value="">No play selected</option>
         @foreach ($works as $work)
             <option value="{{ $work->LongTitle }}">{{ $work->Title }}</option>
         @endforeach
     </select>
+    @error('title')
+    <p class="text-red-600">{{ $message }}</p>
+    @enderror
 
     <input type="submit" value="Dada Shakespeare!" name="submit" id="submit" />
 </form>
