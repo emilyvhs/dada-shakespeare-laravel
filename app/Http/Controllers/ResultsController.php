@@ -23,6 +23,13 @@ class ResultsController extends Controller
             ->where('LongTitle', '=', $title)
             ->value('WorkID');
 
+        //retrieve character list for selected play
+        $characters = DB::table('Characters')
+            ->where('Works', 'LIKE', "%$WorkID%")
+            ->where('SpeechCount', '>', 0)
+            ->orderBy('SpeechCount', 'desc')
+            ->get();
+
         //retrieve and shuffle all paragraphs for selected play, joining with Characters table
         $shuffledParagraphList = DB::table('Paragraphs')
             ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
@@ -32,7 +39,8 @@ class ResultsController extends Controller
 
         return view('results', [
             'title' => $title,
-            'shuffledParagraphs' => $shuffledParagraphList
+            'shuffledParagraphs' => $shuffledParagraphList,
+            'characters' => $characters,
         ]);
     }
 }

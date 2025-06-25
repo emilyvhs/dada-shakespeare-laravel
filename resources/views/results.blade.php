@@ -23,6 +23,11 @@
 <body>
 
 <h1>{{ $title }}</h1>
+<h2>Characters</h2>
+
+@foreach($characters as $character)
+    <p>{{ $character->CharName }}</p>
+@endforeach
 
 @foreach($shuffledParagraphs as $paragraph)
     <p class="font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
