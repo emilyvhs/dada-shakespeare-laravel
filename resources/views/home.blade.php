@@ -42,9 +42,36 @@
                     <option value="{{ $work->LongTitle }}">{{ $work->Title }}</option>
                 @endforeach
             </select>
+
             @error('title')
             <p class="text-red-600">{{ $message }}</p>
             @enderror
+
+        </div>
+
+            <label for="shuffle"
+                   class="font-semibold">Choose how to shuffle:</label>
+
+            <select name="shuffle" id="shuffle"
+                    class="border-2 border-solid rounded-t-lg">
+                <option value="all">Shuffle every speech</option>
+                <option value="act">Shuffle speeches within each act</option>
+                <option value="scene">Shuffle speeches within each scene</option>
+            </select>
+
+            <p>Shuffling every speech will return a completely randomised play
+                with none of the original act or scene order preserved -
+                any speech can (and will) appear at any point in the script.</p>
+            <p>Shuffling speeches within each act will preserve the order of the acts only,
+                i.e. Act 1 will be followed by Act 2, etc.
+                Speeches within that act will appear in any order,
+                but you won't see a speech from Act 5 appear in Act 1.</p>
+            <p>Shuffling speeches within each scene will preserve the order of both acts and scenes,
+                i.e. Act 1 Scene 1 will be followed by Act 1 Scene 2, etc.
+                Speeches within scenes will appear in any order,
+                but you won't see a speech from Act 1 Scene 1 appear in Act 1 Scene 2.</p>
+        <div>
+
         </div>
 
         <input type="submit" value="Dada Shakespeare!" name="submit" id="submit" />

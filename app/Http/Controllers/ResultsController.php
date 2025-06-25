@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class ResultsController extends Controller
 {
@@ -12,8 +13,16 @@ class ResultsController extends Controller
     {
         //validate the form input
         $request->validate([
-            'title' => 'required|string|exists:Works,LongTitle'
+            'title' => 'required|string|exists:Works,LongTitle',
+            'shuffle' => [
+                'required',
+                'string',
+                Rule::in(['all', 'act', 'scene']),
+            ],
         ]);
+
+        //set $shuffle
+        $shuffle = $request->shuffle;
 
         //set $title to the value of LongTitle in the Works table
         $title = $request->title;
@@ -33,16 +42,40 @@ class ResultsController extends Controller
             ->orderBy('SpeechCount', 'desc')
             ->get();
 
-        //retrieve and shuffle all paragraphs for selected play, joining with Characters table
-        $shuffledParagraphList = DB::table('Paragraphs')
-            ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
-            ->where('WorkID', '=', $WorkID)
-            ->inRandomOrder()
-            ->get();
+        //if shuffling every line...
+        if($shuffle === 'all'){
+            //retrieve and shuffle all paragraphs for selected play, joining with Characters table
+            $shuffledParagraphs = DB::table('Paragraphs')
+                ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
+                ->where('WorkID', '=', $WorkID)
+                ->inRandomOrder()
+                ->get();
+        }
+
+        //if shuffling within each act...
+        if($shuffle === 'act') {
+            $shuffledParagraphs = DB::table('Paragraphs')
+                ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
+                ->where('WorkID', '=', $WorkID)
+                ->orderBy('Section')
+                ->inRandomOrder()
+                ->get();
+        }
+
+        //if shuffling within each scene...
+        if($shuffle === 'scene') {
+            $shuffledParagraphs = DB::table('Paragraphs')
+                ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
+                ->where('WorkID', '=', $WorkID)
+                ->orderBy('Section')
+                ->orderBy( 'Chapter')
+                ->inRandomOrder()
+                ->get();
+        }
 
         return view('results', [
             'title' => $title,
-            'shuffledParagraphs' => $shuffledParagraphList,
+            'shuffledParagraphs' => $shuffledParagraphs,
             'characters' => $characters,
         ]);
     }
