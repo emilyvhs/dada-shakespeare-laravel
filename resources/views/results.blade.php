@@ -29,6 +29,8 @@
     <p>{{ $character->CharName }}</p>
 @endforeach
 
+<br>
+
 @foreach($shuffledParagraphs as $paragraph)
     <p class="font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
     <p class="whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
