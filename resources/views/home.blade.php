@@ -10,6 +10,11 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
+
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -22,59 +27,92 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
 
-<header>
-    <h1 class="font-bold text-3xl">Dada Shakespeare</h1>
+<header class="p-2">
+    <h1 class="font-[Barriecito] font-bold text-4xl text-center">Dada Shakespeare</h1>
 </header>
 
-<div>
+<div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">What is this?</h2>
+    <p>Welcome! This is Dada Shakespeare.
+       It's a tool to produce shuffled, randomised collages of Shakespeare's plays.</p>
+    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">What?? Why??</h2>
+    <p>For fun!</p>
+    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">How do I use it?</h2>
+    <p>Choose a play and choose how you'd like to shuffle it.</p>
+    <p>Add characters who shouldn't be there, take out characters who should.</p>
+    <p>Save and share your result so you can gather a group of theatre folk and make them perform it for you (they'll probably enjoy it).</p>
+    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">What do the shuffle options do?</h2>
+    <p>Shuffling every speech will return a completely randomised play
+        with none of the original act or scene order preserved -
+        any speech can (and will) appear at any point in the script.</p>
+    <p>Shuffling speeches within each act will preserve the order of the acts only,
+        i.e. Act 1 will be followed by Act 2, etc.
+        Speeches within that act will appear in any order,
+        but you won't see a speech from Act 5 appear in Act 1.</p>
+    <p>Shuffling speeches within each scene will preserve the order of both acts and scenes,
+        i.e. Act 1 Scene 1 will be followed by Act 1 Scene 2, etc.
+        Speeches within scenes will appear in any order,
+        but you won't see a speech from Act 1 Scene 1 appear in Act 1 Scene 2.</p>
+
+</div>
+
+<div class="mt-10 m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">How would you like to Dada Shakespeare?</h2>
+
     <form method="POST" action="{{ url('results') }}">
         @csrf
 
-        <div>
-
+        <div class="flex justify-between items-center">
             <label for="title"
-                   class="font-semibold">Choose a play:</label>
+                   class="font-semibold">
+                Choose a play:
+            </label>
 
-            <select name="title" id="title"
-                    class="border-2 border-solid rounded-t-lg">
-                <option value="">No play selected</option>
-                @foreach ($works as $work)
-                    <option value="{{ $work->LongTitle }}">{{ $work->Title }}</option>
-                @endforeach
-            </select>
+            <div class="py-3">
+                <select name="title" id="title"
+                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                               outline-violet-800 focus:outline-green-400">
+                    <option value="">No play selected</option>
+                    @foreach ($works as $work)
+                        <option value="{{ $work->LongTitle }}">{{ $work->Title }}</option>
+                    @endforeach
+                </select>
+            </div>
 
+        </div>
+
+        <div>
             @error('title')
             <p class="text-red-600">{{ $message }}</p>
             @enderror
-
         </div>
+
+        <div class="flex justify-between items-center">
 
             <label for="shuffle"
-                   class="font-semibold">Choose how to shuffle:</label>
+                   class="font-semibold">
+                Choose how to shuffle:
+            </label>
 
-            <select name="shuffle" id="shuffle"
-                    class="border-2 border-solid rounded-t-lg">
-                <option value="all">Shuffle every speech</option>
-                <option value="act">Shuffle speeches within each act</option>
-                <option value="scene">Shuffle speeches within each scene</option>
-            </select>
-
-            <p>Shuffling every speech will return a completely randomised play
-                with none of the original act or scene order preserved -
-                any speech can (and will) appear at any point in the script.</p>
-            <p>Shuffling speeches within each act will preserve the order of the acts only,
-                i.e. Act 1 will be followed by Act 2, etc.
-                Speeches within that act will appear in any order,
-                but you won't see a speech from Act 5 appear in Act 1.</p>
-            <p>Shuffling speeches within each scene will preserve the order of both acts and scenes,
-                i.e. Act 1 Scene 1 will be followed by Act 1 Scene 2, etc.
-                Speeches within scenes will appear in any order,
-                but you won't see a speech from Act 1 Scene 1 appear in Act 1 Scene 2.</p>
-        <div>
+            <div class="py-3">
+                <select name="shuffle" id="shuffle"
+                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                               outline-violet-800 focus:outline-green-400">
+                    <option value="all">Shuffle every speech</option>
+                    <option value="act">Shuffle speeches within each act</option>
+                    <option value="scene">Shuffle speeches within each scene</option>
+                </select>
+            </div>
 
         </div>
 
-        <input type="submit" value="Dada Shakespeare!" name="submit" id="submit" />
+        <div class="w-full flex justify-center">
+            <input type="submit" value="Dada Shakespeare!" name="submit" id="submit"
+                   class="m-2 p-2 w-1/2 cursor-pointer text-xl font-semibold rounded-lg
+                    bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
+        </div>
+
+
     </form>
 </div>
 
