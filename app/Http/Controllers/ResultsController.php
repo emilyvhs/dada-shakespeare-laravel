@@ -60,6 +60,8 @@ class ResultsController extends Controller
                 ->orderBy('Section')
                 ->inRandomOrder()
                 ->get();
+//            //set $acts as an array of values, containing the $shuffledParagraphs Sections
+//            $acts = $shuffledParagraphs->pluck('Section');
         }
 
         //if shuffling within each scene...
@@ -71,12 +73,21 @@ class ResultsController extends Controller
                 ->orderBy( 'Chapter')
                 ->inRandomOrder()
                 ->get();
+//            //set $acts as an array of values, containing the $shuffledParagraphs Sections
+//            $acts = $shuffledParagraphs->pluck('Section', 'act');
+//            //set $scenes as an array of values, containing the $shuffledParagraphs Chapters
+//            $scenes = $shuffledParagraphs->pluck('Chapter', 'scene');
+//
+//            $actsScenes =
         }
 
         return view('results', [
             'title' => $title,
             'shuffledParagraphs' => $shuffledParagraphs,
             'characters' => $characters,
+//            'acts' => $acts,
+//            'scenes' => $scenes,
+            'shuffle' => $shuffle,
         ]);
     }
 }

@@ -22,19 +22,62 @@
 
 <body>
 
+{{--title of play--}}
 <h1>{{ $title }}</h1>
 <h2>Characters</h2>
 
+{{--character list--}}
 @foreach($characters as $character)
     <p>{{ $character->CharName }}</p>
 @endforeach
 
 <br>
 
-@foreach($shuffledParagraphs as $paragraph)
-    <p class="font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
-    <p class="whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
-@endforeach
+{{--if shuffling within each scene--}}
+@if($shuffle === 'scene')
+
+    @foreach($shuffledParagraphs as $paragraph)
+
+        @if ($loop->first)
+            <br>
+            <h3 class="font-bold">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
+            <br>
+            @php $actScene = $paragraph @endphp
+        @endif
+
+        @if ($paragraph->Section != $actScene->Section ||
+             $paragraph->Chapter != $actScene->Chapter)
+            <br>
+            <h3 class="font-bold">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
+            <br>
+            @php $actScene = $paragraph @endphp
+        @endif
+
+        <p class="font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
+        <p class="whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
+
+    @endforeach
+
+@endif
+
+
+{{--@isset($scenes)--}}
+{{--    @foreach($scenes as $scene)--}}
+{{--        $first--}}
+{{--    @endforeach--}}
+{{--@endisset--}}
+
+
+{{--if shuffling within each act--}}
+{{--@isset($acts)--}}
+
+{{--@endisset--}}
+
+{{--if shuffling every speech--}}
+{{--@foreach($shuffledParagraphs as $paragraph)--}}
+{{--    <p class="font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>--}}
+{{--    <p class="whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>--}}
+{{--@endforeach--}}
 
 
 
