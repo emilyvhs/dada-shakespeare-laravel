@@ -19,6 +19,7 @@ class ResultsController extends Controller
                 'string',
                 Rule::in(['all', 'act', 'scene']),
             ],
+            'addCharacter' => 'nullable|string|exists:Characters,CharID'
         ]);
 
         //set $shuffle
@@ -32,9 +33,14 @@ class ResultsController extends Controller
             ->where('LongTitle', '=', $title)
             ->value('WorkID');
 
+        //set addedCharacter
+        $addedCharacter = $request->addCharacter;
+
         //retrieve character list for selected play
         $characters = DB::table('Characters')
             ->where('Works', 'LIKE', "%$WorkID%")
+            //include addedCharacter
+            ->orWhere('CharID', '=', $addedCharacter)
             //exclude CharNames that refer to groups of already listed characters/stage directions
             ->whereNotIn('CharName', ['All', 'All Citizens', 'All Conspirators', 'All Ladies', 'All Lords', 'All Servants', 'All The People', 'Another', 'Both', 'Both Citizens', 'Both Tribunes', 'Brothers', 'Several Citizens', 'Some Speak', '(stage directions)'])
             ->orderBy('SpeechCount', 'desc')

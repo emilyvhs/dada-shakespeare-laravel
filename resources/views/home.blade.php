@@ -144,9 +144,6 @@
                         class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
                                outline-violet-800 focus:outline-green-400">
                     <option value="">No character selected</option>
-                    @foreach ($characters as $character)
-                        <option value="{{ $character->CharID }}">{{ $character->CharName }}</option>
-                    @endforeach
                 </select>
             </div>
 

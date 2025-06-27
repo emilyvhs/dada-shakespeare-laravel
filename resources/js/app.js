@@ -12,7 +12,7 @@ window.handleAnotherPlayCharacter = function() {
         })
         .then((data) => {
             let characterList = data.data
-            addCharacter.innerHTML = ''
+            addCharacter.innerHTML = '<option value="">No character selected</option>'
             characterList.forEach((character) => {
                 addCharacter.innerHTML += `<option value="${character.CharID}">${character.CharName}</option>`
             })
