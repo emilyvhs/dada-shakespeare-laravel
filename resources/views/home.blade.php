@@ -62,6 +62,8 @@
     <form method="POST" action="{{ url('results') }}">
         @csrf
 
+        <h3 class="font-[Barriecito] font-bold text-xl text-center pb-1">Basic Dada</h3>
+
         <div class="flex justify-between items-center">
             <label for="title"
                    class="font-semibold">
@@ -106,9 +108,37 @@
 
         </div>
 
+        <h3 class="font-[Barriecito] font-bold text-xl text-center pb-1">Add a character</h3>
+
+        <div class="flex justify-between items-center">
+
+            <label for="anotherPlayCharacter"
+                   class="font-semibold">
+                Choose another play:
+            </label>
+
+            <div class="py-3">
+                <select name="anotherPlayCharacter" id="anotherPlayCharacter"
+                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                               outline-violet-800 focus:outline-green-400">
+                    <option value="">No play selected</option>
+                    @foreach ($works as $work)
+                        <option value="{{ $work->LongTitle }}">{{ $work->Title }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
         <div class="w-full flex justify-center">
             <input type="submit" value="Dada Shakespeare!" name="submit" id="submit"
-                   class="m-2 p-2 w-1/2 cursor-pointer text-xl font-semibold rounded-lg
+                   class="m-2 p-2 w-1/2 cursor-pointer text-xl rounded-lg font-[Barriecito]
                     bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
         </div>
 
