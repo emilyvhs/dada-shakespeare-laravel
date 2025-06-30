@@ -110,6 +110,25 @@
 
         </div>
 
+        <h3 class="font-[Barriecito] font-bold text-xl text-center pb-1">Remove a character</h3>
+
+        <div class="flex justify-between items-center">
+
+            <label for="removeCharacter"
+                   class="font-semibold">
+                Choose a character to remove:
+            </label>
+
+            <div class="py-3">
+                <select name="removeCharacter" id="removeCharacter"
+                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                               outline-violet-800 focus:outline-green-400">
+                    <option value="">No character selected</option>
+                </select>
+            </div>
+
+        </div>
+
         <h3 class="font-[Barriecito] font-bold text-xl text-center pb-1">Add a character</h3>
 
         <div class="flex justify-between items-center">
@@ -148,7 +167,6 @@
             </div>
 
         </div>
-
 
         <div class="w-full flex justify-center">
             <input type="submit" value="Dada Shakespeare!" name="submit" id="submit"
