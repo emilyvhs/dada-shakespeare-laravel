@@ -1,10 +1,17 @@
 import './bootstrap';
 
-let anotherPlayCharacter = document.getElementById("anotherPlayCharacter")
+let firstPlay = document.getElementById("firstPlay")
+let removeCharacter = document.getElementById("removeCharacter")
+
+let secondPlay = document.getElementById("secondPlay")
 let addCharacter = document.getElementById("addCharacter")
 
-window.handleAnotherPlayCharacter = function() {
-    let WorkID = anotherPlayCharacter.value
+window.handleRemoveCharacter = function() {
+
+}
+
+window.handleAddCharacter = function() {
+    let WorkID = secondPlay.value
 
     fetch(`http://0.0.0.0:8000/api/characters/work/${WorkID}`)
         .then((response) => {

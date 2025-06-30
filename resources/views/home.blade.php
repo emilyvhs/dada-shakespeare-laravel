@@ -73,12 +73,12 @@
             </label>
 
             <div class="py-3">
-                <select name="title" id="title"
+                <select name="title" id="title" onchange="handleRemoveCharacter()"
                         class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
                                outline-violet-800 focus:outline-green-400">
                     <option value="">No play selected</option>
                     @foreach ($works as $work)
-                        <option value="{{ $work->LongTitle }}">{{ $work->Title }}</option>
+                        <option value="{{ $work->WorkID }}">{{ $work->Title }}</option>
                     @endforeach
                 </select>
             </div>
@@ -114,13 +114,13 @@
 
         <div class="flex justify-between items-center">
 
-            <label for="anotherPlayCharacter"
+            <label for="secondPlay"
                    class="font-semibold">
                 Choose another play:
             </label>
 
             <div class="py-3">
-                <select name="anotherPlayCharacter" id="anotherPlayCharacter" onchange="handleAnotherPlayCharacter()"
+                <select name="secondPlay" id="secondPlay" onchange="handleAddCharacter()"
                         class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
                                outline-violet-800 focus:outline-green-400">
                     <option value="">No play selected</option>

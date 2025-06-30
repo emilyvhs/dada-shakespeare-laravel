@@ -13,7 +13,7 @@ class ResultsController extends Controller
     {
         //validate the form input
         $request->validate([
-            'title' => 'required|string|exists:Works,LongTitle',
+            'title' => 'required|string|exists:Works,WorkID',
             'shuffle' => [
                 'required',
                 'string',
@@ -22,19 +22,19 @@ class ResultsController extends Controller
             'addCharacter' => 'nullable|string|exists:Characters,CharID'
         ]);
 
+        //set $WorkID
+        $WorkID = $request->title;
+
         //set $shuffle
         $shuffle = $request->shuffle;
 
-        //set $title to the value of LongTitle in the Works table
-        $title = $request->title;
-
-        //set $WorkID
-        $WorkID = DB::table('Works')
-            ->where('LongTitle', '=', $title)
-            ->value('WorkID');
-
         //set addedCharacter
         $addedCharacter = $request->addCharacter;
+
+        //set $title to the value of LongTitle in the Works table
+        $title = DB::table('Works')
+            ->where('WorkID', '=', $WorkID)
+            ->value('LongTitle');
 
         //retrieve character list for selected play
         $characters = DB::table('Characters')
