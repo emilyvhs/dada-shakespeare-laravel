@@ -121,7 +121,7 @@
 
             <div class="py-3">
                 <select name="removeCharacter" id="removeCharacter"
-                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48
                                outline-violet-800 focus:outline-green-400">
                     <option value="">No character selected</option>
                 </select>
@@ -140,7 +140,7 @@
 
             <div class="py-3">
                 <select name="secondPlay" id="secondPlay" onchange="handleAddCharacter()"
-                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48
                                outline-violet-800 focus:outline-green-400">
                     <option value="">No play selected</option>
                     @foreach ($works as $work)
