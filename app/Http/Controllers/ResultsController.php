@@ -19,7 +19,8 @@ class ResultsController extends Controller
                 'string',
                 Rule::in(['all', 'act', 'scene']),
             ],
-            'addCharacter' => 'nullable|string|exists:Characters,CharID'
+            'addCharacter' => 'nullable|string|exists:Characters,CharID',
+            'removeCharacter' => 'nullable|string|exists:Characters,CharID'
         ]);
 
         //set $WorkID
@@ -31,6 +32,9 @@ class ResultsController extends Controller
         //set addedCharacter
         $addedCharacter = $request->addCharacter;
 
+        //set removedCharacter
+        $removedCharacter = $request->removeCharacter;
+
         //set $title to the value of LongTitle in the Works table
         $title = DB::table('Works')
             ->where('WorkID', '=', $WorkID)
@@ -39,6 +43,8 @@ class ResultsController extends Controller
         //retrieve character list for selected play
         $characters = DB::table('Characters')
             ->where('Works', 'LIKE', "%$WorkID%")
+            //exclude removedCharacter
+            ->whereNot('CharID', '=', $removedCharacter)
             //include addedCharacter
             ->orWhere('CharID', '=', $addedCharacter)
             //exclude CharNames that refer to groups of already listed characters/stage directions
@@ -47,6 +53,8 @@ class ResultsController extends Controller
 
         //if shuffling every line...
         if($shuffle === 'all'){
+            //exclude speeches for removedCharacter
+
             //add in speeches for addedCharacter
             $first = DB::table('Paragraphs')
                 ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
@@ -54,8 +62,11 @@ class ResultsController extends Controller
 
             //retrieve and shuffle all paragraphs for selected play, joining with Characters table
             $shuffledParagraphs = DB::table('Paragraphs')
+
                 ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
                 ->where('WorkID', '=', $WorkID)
+                //exclude speeches for removedCharacter
+                ->whereNot('Paragraphs.CharID', '=', $removedCharacter)
                 //union with query to retrieve speeches for addedCharacter
                 ->union($first)
                 ->inRandomOrder()
@@ -73,6 +84,8 @@ class ResultsController extends Controller
             $shuffledParagraphs = DB::table('Paragraphs')
                 ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
                 ->where('WorkID', '=', $WorkID)
+                //exclude speeches for removedCharacter
+                ->whereNot('Paragraphs.CharID', '=', $removedCharacter)
                 //union with query to retrieve speeches for addedCharacter
                 ->union($first)
                 //order by acts
@@ -92,6 +105,8 @@ class ResultsController extends Controller
                 //retrieve and shuffle all paragraphs for selected play, joining with Characters table
                 ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
                 ->where('WorkID', '=', $WorkID)
+                //exclude speeches for removedCharacter
+                ->whereNot('Paragraphs.CharID', '=', $removedCharacter)
                 //union with query to retrieve speeches for addedCharacter
                 ->union($first)
                 //order by acts
