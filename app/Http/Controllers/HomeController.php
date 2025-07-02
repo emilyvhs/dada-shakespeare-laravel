@@ -15,12 +15,6 @@ class HomeController extends Controller
         //retrieve all works
         $works = Work::all();
 
-        //retrieve all characters
-        $characters = DB::table('Characters')
-            //exclude CharNames that refer to groups of already listed characters/stage directions
-            ->whereNotIn('CharName', ['All', 'All Citizens', 'All Conspirators', 'All Ladies', 'All Lords', 'All Servants', 'All The People', 'Another', 'Both', 'Both Citizens', 'Both Tribunes', 'Brothers', 'Several Citizens', 'Some Speak', '(stage directions)'])
-            ->get();
-
         //retrieve firstPlay from session
         if ($request->session()->has('firstPlay')) {
             $firstPlay = $request->session()->pull('firstPlay');
@@ -36,7 +30,6 @@ class HomeController extends Controller
 
         return view('home', [
             'works' => $works,
-            'characters' => $characters,
             'firstPlayCharacters' => $firstPlayCharacters,
         ]);
     }
