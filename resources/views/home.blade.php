@@ -149,7 +149,12 @@
                 <select name="secondPlay" id="secondPlay" onchange="handleAddCharacter()"
                         class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
                                outline-violet-800 focus:outline-green-400">
-                    <option value="">No play selected</option>
+                    <option value="{{ $secondPlayValue }}">{{ $secondPlayTitle }}</option>
+                    @foreach ($works as $work)
+                        @if($work->WorkID != $secondPlayValue)
+                            <option value="{{ $work->WorkID }}">{{ $work->Title }}</option>
+                        @endif
+                    @endforeach
                 </select>
             </div>
 
@@ -167,6 +172,11 @@
                         class="text-right text-balance outline-2 outline-solid rounded-lg w-48
                                outline-violet-800 focus:outline-green-400">
                     <option value="">No character selected</option>
+                    @isset($secondPlayCharacters)
+                        @foreach($secondPlayCharacters as $character)
+                            <option value="{{ $character->CharID }}">{{ $character->CharName }}</option>
+                        @endforeach
+                    @endisset
                 </select>
             </div>
 
