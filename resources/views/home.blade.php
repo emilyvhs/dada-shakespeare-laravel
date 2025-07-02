@@ -28,6 +28,8 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
 
+
+
 <header class="p-2">
     <h1 class="font-[Barriecito] font-bold text-4xl text-center">Dada Shakespeare</h1>
 </header>
@@ -124,6 +126,11 @@
                         class="text-right text-balance outline-2 outline-solid rounded-lg w-48
                                outline-violet-800 focus:outline-green-400">
                     <option value="">No character selected</option>
+                    @isset($firstPlayCharacters)
+                        @foreach($firstPlayCharacters as $character)
+                        <option value="{{ $character->CharID }}">{{ $character->CharName }}</option>
+                        @endforeach
+                    @endisset
                 </select>
             </div>
 
@@ -140,7 +147,7 @@
 
             <div class="py-3">
                 <select name="secondPlay" id="secondPlay" onchange="handleAddCharacter()"
-                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48
+                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
                                outline-violet-800 focus:outline-green-400">
                     <option value="">No play selected</option>
                     @foreach ($works as $work)
@@ -160,7 +167,7 @@
 
             <div class="py-3">
                 <select name="addCharacter" id="addCharacter"
-                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48
                                outline-violet-800 focus:outline-green-400">
                     <option value="">No character selected</option>
                 </select>

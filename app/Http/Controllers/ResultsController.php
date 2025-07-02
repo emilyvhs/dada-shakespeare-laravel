@@ -24,6 +24,7 @@ class ResultsController extends Controller
 
         //set $WorkID
         $WorkID = $request->title;
+        session(['firstPlay' => $WorkID]);
 
         //set $shuffle
         $shuffle = $request->shuffle;
