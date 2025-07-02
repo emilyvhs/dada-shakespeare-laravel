@@ -24,6 +24,7 @@ class HomeController extends Controller
                 ->whereNotIn('CharName', ['All', 'All Citizens', 'All Conspirators', 'All Ladies', 'All Lords', 'All Servants', 'All The People', 'Another', 'Both', 'Both Citizens', 'Both Tribunes', 'Brothers', 'Several Citizens', 'Some Speak', '(stage directions)'])
                 ->get();
         } else {
+            $firstPlay = "";
             $firstPlayCharacters = [];
         }
 
@@ -48,6 +49,7 @@ class HomeController extends Controller
 
         return view('home', [
             'works' => $works,
+            'firstPlay' => $firstPlay,
             'firstPlayCharacters' => $firstPlayCharacters,
             'secondPlayValue' => $secondPlayValue,
             'secondPlayTitle' => $secondPlayTitle,

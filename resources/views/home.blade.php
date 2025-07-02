@@ -150,8 +150,11 @@
                         class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
                                outline-violet-800 focus:outline-green-400">
                     <option value="{{ $secondPlayValue }}">{{ $secondPlayTitle }}</option>
+                    @if($secondPlayValue != null)
+                        <option value="">No play selected</option>
+                    @endif
                     @foreach ($works as $work)
-                        @if($work->WorkID != $secondPlayValue)
+                        @if($firstPlay != $work->WorkID)
                             <option value="{{ $work->WorkID }}">{{ $work->Title }}</option>
                         @endif
                     @endforeach
