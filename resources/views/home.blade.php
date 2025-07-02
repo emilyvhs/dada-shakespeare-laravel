@@ -75,7 +75,7 @@
             </label>
 
             <div class="py-3">
-                <select name="title" id="title" onchange="handleRemoveCharacter()"
+                <select name="title" id="title" onchange="handleFirstPlayChange()"
                         class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
                                outline-violet-800 focus:outline-green-400">
                     <option value="">No play selected</option>
@@ -150,9 +150,6 @@
                         class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
                                outline-violet-800 focus:outline-green-400">
                     <option value="">No play selected</option>
-                    @foreach ($works as $work)
-                        <option value="{{ $work->WorkID }}">{{ $work->Title }}</option>
-                    @endforeach
                 </select>
             </div>
 
