@@ -154,7 +154,7 @@
                         <option value="">No play selected</option>
                     @endif
                     @foreach ($works as $work)
-                        @if($firstPlay != $work->WorkID)
+                        @if(($firstPlay != $work->WorkID) && ($secondPlayValue != $work->WorkID))
                             <option value="{{ $work->WorkID }}">{{ $work->Title }}</option>
                         @endif
                     @endforeach
