@@ -18,22 +18,29 @@ class ResultsController extends Controller
                 'string',
                 Rule::in(['all', 'act', 'scene']),
             ],
+            'removeCharacter' => 'nullable|string|exists:Characters,CharID',
+            'secondPlay' => 'nullable|string|exists:Works,WorkID',
             'addCharacter' => 'nullable|string|exists:Characters,CharID',
-            'removeCharacter' => 'nullable|string|exists:Characters,CharID'
         ]);
 
         //set $WorkID
         $WorkID = $request->title;
+        //set firstPlay value in SESSION
         session(['firstPlay' => $WorkID]);
 
         //set $shuffle
         $shuffle = $request->shuffle;
 
-        //set addedCharacter
-        $addedCharacter = $request->addCharacter;
-
         //set removedCharacter
         $removedCharacter = $request->removeCharacter;
+
+        //set SecondPlay
+        $secondPlay = $request->secondPlay;
+        //set secondPlay value in SESSION
+        session(['secondPlay' => $secondPlay]);
+
+        //set addedCharacter
+        $addedCharacter = $request->addCharacter;
 
         //set $title to the value of LongTitle in the Works table
         $title = DB::table('Works')
