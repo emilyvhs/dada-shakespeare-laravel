@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 //display homepage and Dada form
@@ -10,16 +11,9 @@ Route::get('/', [HomeController::class, 'displayDadaForm']);
 //display results
 Route::post('/results', [ResultsController::class, 'display']);
 
-//get all works
-//get single work
-
-//get all chapters for specified work
-//get single chapter
-
-//get all characters for specified work
-//get single character
-
-//get all paragraphs for specified work
-//get all paragraphs for specified character
-//shuffle all paragraphs for specified work
-//shuffle all paragraphs for
+//create a new user
+Route::post('/register', [UserController::class, 'create']);
+//display new user registration form
+Route::get('/register', [UserController::class, 'displayRegistrationForm']);
+//display logged in user area
+Route::get('/my-dada-shakespeare', [UserController::class, 'displayUserArea']);

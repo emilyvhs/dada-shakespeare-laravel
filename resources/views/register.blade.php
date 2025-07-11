@@ -31,166 +31,69 @@
 
 
 <header class="p-2">
-    <h1 class="font-[Barriecito] font-bold text-4xl text-center">Dada Shakespeare</h1>
+    <h1 class="font-[Barriecito] font-bold text-4xl text-center">Register for Dada Shakespeare</h1>
 </header>
 
 <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h2 class="font-[Barriecito] font-bold text-2xl py-1">What is this?</h2>
-    <p class="pb-2">Welcome! This is Dada Shakespeare.
-        It's a tool to produce shuffled, randomised collages of Shakespeare's plays.</p>
-    <h2 class="font-[Barriecito] font-bold text-2xl py-1">What?? Why??</h2>
-    <p class="pb-2">For fun!</p>
-    <h2 class="font-[Barriecito] font-bold text-2xl py-1">How do I use it?</h2>
-    <p class="pb-2">Choose a play and choose how you'd like to shuffle it.</p>
-    <p class="pb-2">Remove a character who should be in that play, or add a character from another play who shouldn't be there.</p>
-    <p class="pb-2">Save and share your result so you can gather a group of theatre folk and make them perform it for you (they'll
-        probably enjoy it).</p>
-    <h2 class="font-[Barriecito] font-bold text-2xl py-1">What do the shuffle options do?</h2>
-    <p class="pb-2">Shuffling every speech will return a completely randomised play
-        with none of the original act or scene order preserved -
-        any speech can (and will) appear at any point in the script.</p>
-    <p class="pb-2">Shuffling speeches within each act will preserve the order of the acts only.
-        Act 1 will be followed by Act 2, etc.
-        Speeches within that act will appear in any order,
-        but you won't see a speech from Act 5 appear in Act 1.</p>
-    <p class="pb-2">Shuffling speeches within each scene will preserve the order of both acts and scenes.
-        Act 1 Scene 1 will be followed by Act 1 Scene 2, etc.
-        Speeches within scenes will appear in any order,
-        but you won't see a speech from Act 1 Scene 1 appear in Act 1 Scene 2.</p>
-
+    <h2 class="font-[Barriecito] font-bold text-2xl py-1">Why do I need to register?</h2>
+    <p class="pb-2">You don't! Anyone can use Dada Shakespeare.</p>
+    <p class="pb-2">But if you want to be able to save and share a particular result, you'll need to register first.
+        If you don't register, you'll get a fresh shuffle every time, and any previous results will be lost forever.</p>
 </div>
 
 <div class="mt-10 m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">How would you like to Dada Shakespeare?</h2>
+    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">Registration form</h2>
 
-    <form method="POST" action="{{ url('results') }}">
+    <form method="POST" action="{{ url('my-dada-shakespeare') }}">
         @csrf
 
-        <h3 class="font-[Barriecito] font-bold text-xl text-center pb-1">Basic Dada</h3>
-
         <div class="flex justify-between items-center">
-            <label for="title"
+            <label for="username"
                    class="font-semibold">
-                Choose a play:
+                Username:
             </label>
 
             <div class="py-3">
-                <select name="title" id="title" onchange="handleFirstPlayChange()"
-                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
-                               outline-violet-800 focus:outline-green-400">
-                    <option value="">No play selected</option>
-                    @foreach ($works as $work)
-                        <option value="{{ $work->WorkID }}">{{ $work->Title }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-        </div>
-
-        <div>
-            @error('title')
-            <p class="text-red-600">{{ $message }}</p>
-            @enderror
-        </div>
-
-        <div class="flex justify-between items-center">
-
-            <label for="shuffle"
-                   class="font-semibold">
-                Choose how to shuffle:
-            </label>
-
-            <div class="py-3">
-                <select name="shuffle" id="shuffle"
-                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
-                               outline-violet-800 focus:outline-green-400">
-                    <option value="all">Shuffle every speech</option>
-                    <option value="act">Shuffle speeches within each act</option>
-                    <option value="scene">Shuffle speeches within each scene</option>
-                </select>
-            </div>
-
-        </div>
-
-        <h3 class="font-[Barriecito] font-bold text-xl text-center pb-1">Remove a character</h3>
-
-        <div class="flex justify-between items-center">
-
-            <label for="removeCharacter"
-                   class="font-semibold">
-                Choose a character to remove:
-            </label>
-
-            <div class="py-3">
-                <select name="removeCharacter" id="removeCharacter"
-                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48
-                               outline-violet-800 focus:outline-green-400">
-                    <option value="">No character selected</option>
-                    @isset($firstPlayCharacters)
-                        @foreach($firstPlayCharacters as $character)
-                        <option value="{{ $character->CharID }}">{{ $character->CharName }}</option>
-                        @endforeach
-                    @endisset
-                </select>
-            </div>
-
-        </div>
-
-        <h3 class="font-[Barriecito] font-bold text-xl text-center pb-1">Add a character</h3>
-
-        <div class="flex justify-between items-center">
-
-            <label for="secondPlay"
-                   class="font-semibold">
-                Choose another play:
-            </label>
-
-            <div class="py-3">
-                <select name="secondPlay" id="secondPlay" onchange="handleAddCharacter()"
-                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
-                               outline-violet-800 focus:outline-green-400">
-                    <option value="{{ $secondPlayValue }}">{{ $secondPlayTitle }}</option>
-                    @if($secondPlayValue != null)
-                        <option value="">No play selected</option>
-                    @endif
-                    @foreach ($works as $work)
-                        @if(($firstPlay != $work->WorkID) && ($secondPlayValue != $work->WorkID))
-                            <option value="{{ $work->WorkID }}">{{ $work->Title }}</option>
-                        @endif
-                    @endforeach
-                </select>
+                <input type="text" name="username" id="username"
+                       class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                              outline-violet-800 focus:outline-green-400" />
             </div>
 
         </div>
 
         <div class="flex justify-between items-center">
-
-            <label for="addCharacter"
+            <label for="email"
                    class="font-semibold">
-                Choose a character to add:
+                Email:
             </label>
 
             <div class="py-3">
-                <select name="addCharacter" id="addCharacter"
-                        class="text-right text-balance outline-2 outline-solid rounded-lg w-48
-                               outline-violet-800 focus:outline-green-400">
-                    <option value="">No character selected</option>
-                    @isset($secondPlayCharacters)
-                        @foreach($secondPlayCharacters as $character)
-                            <option value="{{ $character->CharID }}">{{ $character->CharName }}</option>
-                        @endforeach
-                    @endisset
-                </select>
+                <input type="text" name="email" id="email"
+                       class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                              outline-violet-800 focus:outline-green-400" />
+            </div>
+
+        </div>
+
+        <div class="flex justify-between items-center">
+            <label for="password"
+                   class="font-semibold">
+                Password:
+            </label>
+
+            <div class="py-3">
+                <input type="password" name="password" id="password"
+                       class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                              outline-violet-800 focus:outline-green-400" />
             </div>
 
         </div>
 
         <div class="w-full flex justify-center">
-            <input type="submit" value="Dada Shakespeare!" name="submit" id="submit"
+            <input type="submit" value="Register!" name="submit" id="submit"
                    class="m-2 p-2 w-1/2 cursor-pointer text-xl rounded-lg font-[Barriecito]
                     bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
         </div>
-
 
     </form>
 </div>
