@@ -25,35 +25,39 @@
         @endif
     </head>
 
-<body>
+<body class="bg-[url(/resources/images/parchment-background.jpg)]">
 
 {{--title of play--}}
-<h1>{{ $title }}</h1>
-<h2>Characters</h2>
+<header class="p-2">
+    <h1 class="font-[Barriecito] font-bold text-4xl text-center">{{ $title }}</h1>
+</header>
 
 {{--character list--}}
-@foreach($characters as $character)
-    <p>{{ $character->CharName }}</p>
-@endforeach
+<div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
 
-<br>
+    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">Characters</h2>
+
+    @foreach($characters as $character)
+        <p>{{ $character->CharName }}</p>
+    @endforeach
+
+</div>
 
 {{--if shuffling within each scene--}}
 @if($shuffle === 'scene')
+    <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
 
     @foreach($shuffledParagraphs as $paragraph)
 
         @if ($loop->first)
-            <br>
-            <h3 class="font-bold">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
+            <h3 class="font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
             <br>
             @php $actScene = $paragraph @endphp
         @endif
 
         @if ($paragraph->Section != $actScene->Section ||
              $paragraph->Chapter != $actScene->Chapter)
-            <br>
-            <h3 class="font-bold">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
+            <h3 class="font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
             <br>
             @php $actScene = $paragraph @endphp
         @endif
@@ -63,24 +67,22 @@
         <br>
 
     @endforeach
-
+    </div>
 @endif
 
 {{--if shuffling within each act--}}
 @if($shuffle === 'act')
-
+    <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     @foreach($shuffledParagraphs as $paragraph)
 
         @if ($loop->first)
-            <br>
-            <h3 class="font-bold">Act {{ $paragraph->Section }}</h3>
+            <h3 class="font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
             <br>
             @php $act = $paragraph @endphp
         @endif
 
         @if ($paragraph->Section != $act->Section)
-            <br>
-            <h3 class="font-bold">Act {{ $paragraph->Section }}</h3>
+            <h3 class="font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
             <br>
             @php $act = $paragraph @endphp
         @endif
@@ -90,7 +92,7 @@
         <br>
 
     @endforeach
-
+    </div>
 @endif
 
 {{--if shuffling every speech--}}
