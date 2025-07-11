@@ -8,6 +8,8 @@ let removeCharacter = document.getElementById("removeCharacter")
 let secondPlay = document.getElementById("secondPlay")
 let addCharacter = document.getElementById("addCharacter")
 
+const excludedCharacters = ['All', 'All Citizens', 'All Conspirators', 'All Ladies', 'All Lords', 'All Servants', 'All The People', 'Another', 'Both', 'Both Citizens', 'Both Tribunes', 'Brothers', 'Several Citizens', 'Some Speak', '(stage directions)']
+
 window.handleFirstPlayChange = function() {
     handleRemoveCharacter()
     createSecondPlayList()
@@ -25,7 +27,11 @@ window.handleRemoveCharacter = function() {
             let characterList = data.data
             removeCharacter.innerHTML = '<option value="">No character selected</option>'
             characterList.forEach((character) => {
-                removeCharacter.innerHTML += `<option value="${character.CharID}">${character.CharName}</option>`
+                if (character.SpeechCount == 0 || excludedCharacters.includes(character.CharName)) {
+                    //do nothing
+                } else {
+                    removeCharacter.innerHTML += `<option value="${character.CharID}">${character.CharName}</option>`
+                }
             })
         })
 }
@@ -41,7 +47,11 @@ window.handleAddCharacter = function(){
             let characterList = data.data
             addCharacter.innerHTML = '<option value="">No character selected</option>'
             characterList.forEach((character) => {
-                addCharacter.innerHTML += `<option value="${character.CharID}">${character.CharName}</option>`
+                if (character.SpeechCount == 0 || excludedCharacters.includes(character.CharName)) {
+                    //do nothing
+                } else {
+                    addCharacter.innerHTML += `<option value="${character.CharID}">${character.CharName}</option>`
+                }
             })
         })
 }
