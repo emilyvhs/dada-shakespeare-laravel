@@ -87,6 +87,7 @@
 
         <p class="font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
         <p class="whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
+        <br>
 
     @endforeach
 
