@@ -31,72 +31,15 @@
 
 
 <header class="p-2">
-    <h1 class="font-[Barriecito] font-bold text-4xl text-center">Register for Dada Shakespeare</h1>
+    <h1 class="font-[Barriecito] font-bold text-4xl text-center">Welcome, name!</h1>
 </header>
 
 <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h2 class="font-[Barriecito] font-bold text-2xl py-1">Why do I need to register?</h2>
-    <p class="pb-2">You don't! Anyone can use Dada Shakespeare.</p>
-    <p class="pb-2">But if you want to be able to save and share a particular result, you'll need to register first.
-        If you don't register, you'll get a fresh shuffle every time, and any previous results will be lost forever.</p>
+    <h2 class="font-[Barriecito] font-bold text-2xl py-1">Your saved Dadas</h2>
+    <p class="pb-2">Nothing here yet!</p>
 </div>
 
-<div class="mt-10 m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">Registration form</h2>
 
-    <form method="POST">
-        @csrf
-
-        <div class="flex justify-between items-center">
-            <label for="username"
-                   class="font-semibold">
-                Username:
-            </label>
-
-            <div class="py-3">
-                <input type="text" name="username" id="username"
-                       class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
-                              outline-violet-800 focus:outline-green-400" />
-            </div>
-
-        </div>
-
-        <div class="flex justify-between items-center">
-            <label for="email"
-                   class="font-semibold">
-                Email:
-            </label>
-
-            <div class="py-3">
-                <input type="text" name="email" id="email"
-                       class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
-                              outline-violet-800 focus:outline-green-400" />
-            </div>
-
-        </div>
-
-        <div class="flex justify-between items-center">
-            <label for="password"
-                   class="font-semibold">
-                Password:
-            </label>
-
-            <div class="py-3">
-                <input type="password" name="password" id="password"
-                       class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
-                              outline-violet-800 focus:outline-green-400" />
-            </div>
-
-        </div>
-
-        <div class="w-full flex justify-center">
-            <input type="submit" value="Register!" name="submit" id="submit"
-                   class="m-2 p-2 w-1/2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-                    bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
-        </div>
-
-    </form>
-</div>
 
 </body>
 </html>
