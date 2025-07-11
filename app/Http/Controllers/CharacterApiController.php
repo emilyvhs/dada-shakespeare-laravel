@@ -37,7 +37,6 @@ class CharacterApiController extends Controller
     {
         $characterList = DB::table('Characters')
             ->where('Works', 'LIKE', "%$WorkID%")
-            ->whereNotIn('CharName', ['All', 'All Citizens', 'All Conspirators', 'All Ladies', 'All Lords', 'All Servants', 'All The People', 'Another', 'Both', 'Both Citizens', 'Both Tribunes', 'Brothers', 'Several Citizens', 'Some Speak', '(stage directions)'])
             ->get();
 
         if(count($characterList) === 0) {
