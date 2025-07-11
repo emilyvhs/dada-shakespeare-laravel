@@ -61,6 +61,12 @@
 
         </div>
 
+        <div>
+            @error('username')
+            <p class="text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
+
         <div class="flex justify-between items-center">
             <label for="email"
                    class="font-semibold">
@@ -75,6 +81,12 @@
 
         </div>
 
+        <div>
+            @error('email')
+            <p class="text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
+
         <div class="flex justify-between items-center">
             <label for="password"
                    class="font-semibold">
@@ -87,6 +99,12 @@
                               outline-violet-800 focus:outline-green-400" />
             </div>
 
+        </div>
+
+        <div>
+            @error('password')
+            <p class="text-red-600">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="w-full flex justify-center">
