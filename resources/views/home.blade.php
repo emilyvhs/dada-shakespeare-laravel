@@ -35,26 +35,26 @@
 </header>
 
 <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">What is this?</h2>
-    <p>Welcome! This is Dada Shakespeare.
+    <h2 class="font-[Barriecito] font-bold text-2xl py-1">What is this?</h2>
+    <p class="pb-2">Welcome! This is Dada Shakespeare.
         It's a tool to produce shuffled, randomised collages of Shakespeare's plays.</p>
-    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">What?? Why??</h2>
-    <p>For fun!</p>
-    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">How do I use it?</h2>
-    <p>Choose a play and choose how you'd like to shuffle it.</p>
-    <p>Add characters who shouldn't be there, take out characters who should.</p>
-    <p>Save and share your result so you can gather a group of theatre folk and make them perform it for you (they'll
+    <h2 class="font-[Barriecito] font-bold text-2xl py-1">What?? Why??</h2>
+    <p class="pb-2">For fun!</p>
+    <h2 class="font-[Barriecito] font-bold text-2xl py-1">How do I use it?</h2>
+    <p class="pb-2">Choose a play and choose how you'd like to shuffle it.</p>
+    <p class="pb-2">Add characters who shouldn't be there, take out characters who should.</p>
+    <p class="pb-2">Save and share your result so you can gather a group of theatre folk and make them perform it for you (they'll
         probably enjoy it).</p>
-    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">What do the shuffle options do?</h2>
-    <p>Shuffling every speech will return a completely randomised play
+    <h2 class="font-[Barriecito] font-bold text-2xl py-1">What do the shuffle options do?</h2>
+    <p class="pb-2">Shuffling every speech will return a completely randomised play
         with none of the original act or scene order preserved -
         any speech can (and will) appear at any point in the script.</p>
-    <p>Shuffling speeches within each act will preserve the order of the acts only,
-        i.e. Act 1 will be followed by Act 2, etc.
+    <p class="pb-2">Shuffling speeches within each act will preserve the order of the acts only.
+        Act 1 will be followed by Act 2, etc.
         Speeches within that act will appear in any order,
         but you won't see a speech from Act 5 appear in Act 1.</p>
-    <p>Shuffling speeches within each scene will preserve the order of both acts and scenes,
-        i.e. Act 1 Scene 1 will be followed by Act 1 Scene 2, etc.
+    <p class="pb-2">Shuffling speeches within each scene will preserve the order of both acts and scenes.
+        Act 1 Scene 1 will be followed by Act 1 Scene 2, etc.
         Speeches within scenes will appear in any order,
         but you won't see a speech from Act 1 Scene 1 appear in Act 1 Scene 2.</p>
 
