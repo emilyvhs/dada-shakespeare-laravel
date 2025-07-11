@@ -11,6 +11,7 @@ let addCharacter = document.getElementById("addCharacter")
 window.handleFirstPlayChange = function() {
     handleRemoveCharacter()
     createSecondPlayList()
+    handleAddCharacter()
 }
 
 window.handleRemoveCharacter = function() {
