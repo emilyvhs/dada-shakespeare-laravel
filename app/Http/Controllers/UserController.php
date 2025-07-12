@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -36,6 +38,33 @@ class UserController extends Controller
         $newUser->save();
 
         return redirect('/my-dada-shakespeare');
+    }
+
+    public function login(Request $request): RedirectResponse
+    {
+        //validate the form input and save as $credentials
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);
+
+        //if authentication is successful, regenerate session to prevent session fixation
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            //save authenticated user's username in session
+            $user = Auth::user();
+            $username = $user->username;
+            session(['username' => $username]);
+
+            //redirect to user area
+            return redirect()->intended('my-dada-shakespeare');
+        }
+
+        //if authentication is unsuccessful, return back with errors
+        return back()->withErrors([
+            'email' => 'Incorrect log in information! Please try again',
+        ])->onlyInput('email');
     }
 
     public function displayUserArea()
