@@ -21,8 +21,9 @@ class UserController extends Controller
             'password' => 'required|string|min:8'
         ]);
 
-        //set username to be flashed to session
+        //set username in session
         $username = $request->username;
+        session(['username' => $username]);
 
         //create new user
         $newUser = new User();
@@ -34,8 +35,7 @@ class UserController extends Controller
         //save new user
         $newUser->save();
 
-        return redirect('/my-dada-shakespeare')
-            ->with('username', $username);
+        return redirect('/my-dada-shakespeare');
     }
 
     public function displayUserArea()
