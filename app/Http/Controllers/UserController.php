@@ -40,6 +40,11 @@ class UserController extends Controller
         return redirect('/my-dada-shakespeare');
     }
 
+    public function displayLoginForm()
+    {
+        return view('login');
+    }
+
     public function login(Request $request): RedirectResponse
     {
         //validate the form input and save as $credentials
@@ -58,7 +63,7 @@ class UserController extends Controller
             session(['username' => $username]);
 
             //redirect to user area
-            return redirect()->intended('my-dada-shakespeare');
+            return redirect()->intended('/my-dada-shakespeare');
         }
 
         //if authentication is unsuccessful, return back with errors
