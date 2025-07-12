@@ -31,7 +31,7 @@
 
 
 <header class="p-2">
-    <h1 class="font-[Barriecito] font-bold text-4xl text-center">Welcome, {{ session('username') }}!</h1>
+    <h1 class="font-[Barriecito] font-bold text-4xl text-center">Welcome, {{ $name }}!</h1>
 </header>
 
 <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">

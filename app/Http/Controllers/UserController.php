@@ -18,19 +18,19 @@ class UserController extends Controller
     {
         //validate the form input
         $request->validate([
-            'username' => 'required|string|min:4|max:50',
+            'name' => 'required|string|min:4|max:50',
             'email' => 'required|unique:users,email',
             'password' => 'required|string|min:8'
         ]);
 
         //set username in session
-        $username = $request->username;
-        session(['username' => $username]);
+//        $username = $request->username;
+//        session(['username' => $username]);
 
         //create new user
         $newUser = new User();
 
-        $newUser->username = $request->username;
+        $newUser->name = $request->name;
         $newUser->email = $request->email;
         $newUser->password = $request->password;
 
@@ -40,7 +40,7 @@ class UserController extends Controller
         return redirect('/my-dada-shakespeare');
     }
 
-    public function displayLoginForm()
+    public function displayLoginForm(Request $request)
     {
         return view('login');
     }
@@ -53,17 +53,12 @@ class UserController extends Controller
             'password' => ['required']
         ]);
 
-        //if authentication is successful, regenerate session to prevent session fixation
         if (Auth::attempt($credentials)) {
+            //if authentication is successful, regenerate session to prevent session fixation
             $request->session()->regenerate();
 
-            //save authenticated user's username in session
-            $user = Auth::user();
-            $username = $user->username;
-            session(['username' => $username]);
-
             //redirect to user area
-            return redirect()->intended('/my-dada-shakespeare');
+            return redirect('/my-dada-shakespeare');
         }
 
         //if authentication is unsuccessful, return back with errors
@@ -74,6 +69,12 @@ class UserController extends Controller
 
     public function displayUserArea()
     {
-        return view('my-dada-shakespeare');
+        //pass authenticated user's username
+        $user = Auth::user();
+        $name = $user->name;
+
+        return view('my-dada-shakespeare', [
+            'name' => $name,
+        ]);
     }
 }
