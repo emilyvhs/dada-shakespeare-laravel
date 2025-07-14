@@ -4,15 +4,22 @@ import './bootstrap';
 
 let menuOpenButton = document.querySelector(".menu-open")
 let menuCloseButton = document.querySelector(".menu-close")
+let navItems = document.querySelectorAll(".nav-item")
 
 window.handleMenuOpen = function() {
     menuOpenButton.classList.add("hidden")
     menuCloseButton.classList.remove("hidden")
+    navItems.forEach((navItem) => {
+        navItem.classList.remove("hidden")
+    })
 }
 
 window.handleMenuClose = function() {
     menuCloseButton.classList.add("hidden")
     menuOpenButton.classList.remove("hidden")
+    navItems.forEach((navItem) => {
+        navItem.classList.add("hidden")
+    })
 }
 
 
