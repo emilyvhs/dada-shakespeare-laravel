@@ -31,13 +31,25 @@
 
 
 <header class="p-2">
-    <h1 class="font-[Barriecito] font-bold text-4xl text-center">Welcome, {{ $name }}!</h1>
+    <h1 class="font-[Barriecito] font-bold text-4xl text-center">Welcome, {{ session('name') }}!</h1>
 </header>
 
 <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     <h2 class="font-[Barriecito] font-bold text-2xl py-1">Your saved Dadas</h2>
     <p class="pb-2">Nothing here yet!</p>
 </div>
+
+<form method="POST" action="{{ url('/logout') }}">
+    @csrf
+
+    <div class="w-full flex justify-center">
+        <input type="submit" value="Log out!" name="submit" id="submit"
+               class="m-2 p-2 w-1/2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+                    bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
+    </div>
+</form>
+
+
 
 
 

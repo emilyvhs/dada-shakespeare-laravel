@@ -23,3 +23,6 @@ Route::post('/login', [UserController::class, 'login']);
 
 //display logged in user area
 Route::get('/my-dada-shakespeare', [UserController::class, 'displayUserArea']);
+
+//log out
+Route::post('/logout', [UserController::class, 'logout']);

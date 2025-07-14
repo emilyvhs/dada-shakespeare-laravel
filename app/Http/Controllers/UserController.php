@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -23,10 +24,6 @@ class UserController extends Controller
             'password' => 'required|string|min:8'
         ]);
 
-        //set username in session
-//        $username = $request->username;
-//        session(['username' => $username]);
-
         //create new user
         $newUser = new User();
 
@@ -37,6 +34,10 @@ class UserController extends Controller
         //save new user
         $newUser->save();
 
+        //set name in session
+        $name = $newUser->name;
+        session(['name' => $name]);
+
         return redirect('/my-dada-shakespeare');
     }
 
@@ -45,36 +46,41 @@ class UserController extends Controller
         return view('login');
     }
 
-    public function login(Request $request): RedirectResponse
+    public function login(Request $request)
     {
-        //validate the form input and save as $credentials
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
+        //validate the form input
+        $request->validate([
+            'email' => 'required|exists:users,email',
+            'password' => 'required'
         ]);
 
-        if (Auth::attempt($credentials)) {
-            //if authentication is successful, regenerate session to prevent session fixation
-            $request->session()->regenerate();
+        $email = $request->email;
 
-            //redirect to user area
-            return redirect('/my-dada-shakespeare');
-        }
+        //database query to retrieve name
+        $name = DB::table('users')
+            ->where('email', '=', $email)
+            ->value('name');
 
-        //if authentication is unsuccessful, return back with errors
-        return back()->withErrors([
-            'email' => 'Incorrect log in information! Please try again',
-        ])->onlyInput('email');
+        //set name in session
+        session(['name' => $name]);
+
+        //redirect to user area
+        return redirect('/my-dada-shakespeare');
     }
 
     public function displayUserArea()
     {
-        //pass authenticated user's username
-        $user = Auth::user();
-        $name = $user->name;
+        return view('my-dada-shakespeare');
+    }
 
-        return view('my-dada-shakespeare', [
-            'name' => $name,
-        ]);
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
