@@ -180,6 +180,9 @@ return [
         ],
         'title' => [
             'required' => 'You must choose a play to Dada!',
+        ],
+        'email' => [
+            'exists' => 'Incorrect credentials! Please try again.',
         ]
     ],
 

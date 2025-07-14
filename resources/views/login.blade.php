@@ -80,6 +80,11 @@
             <p class="text-red-600">{{ $message }}</p>
             @enderror
         </div>
+        <div>
+            @error('password')
+            <p class="text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
 
         <div class="w-full flex justify-center">
             <input type="submit" value="Log in!" name="submit" id="submit"
