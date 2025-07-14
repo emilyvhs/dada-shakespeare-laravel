@@ -1,5 +1,23 @@
 import './bootstrap';
 
+//JS to control burger menu for nav
+
+let menuOpenButton = document.querySelector(".menu-open")
+let menuCloseButton = document.querySelector(".menu-close")
+
+window.handleMenuOpen = function() {
+    menuOpenButton.classList.add("hidden")
+    menuCloseButton.classList.remove("hidden")
+}
+
+window.handleMenuClose = function() {
+    menuCloseButton.classList.add("hidden")
+    menuOpenButton.classList.remove("hidden")
+}
+
+
+//JS to control play and character list options
+
 let url = 'http://0.0.0.0:8000'
 
 let firstPlay = document.getElementById("title")
