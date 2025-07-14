@@ -28,16 +28,16 @@
 <body class="bg-[url(/resources/images/parchment-background.jpg)]">
 
 <nav class="flex gap-2 items-center my-2 mx-4">
-    <a href="/register"
+    <a href="/"
        class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
               bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-        Register
+        Dada again!
     </a>
 
-    <a href="/login"
+    <a href="#"
        class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
               bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-        Log in
+        Save this Dada
     </a>
 </nav>
 
