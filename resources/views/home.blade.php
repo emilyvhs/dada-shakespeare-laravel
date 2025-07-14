@@ -43,10 +43,10 @@
 </nav>
 
 <div class="flex justify-center">
-<h1 class="py-2 px-4 my-2 mx-4 w-fit bg-white shadow-xl ring-6 ring-white/50 rounded-lg
-           font-[Barriecito] font-bold text-4xl">
-    Dada Shakespeare
-</h1>
+    <h1 class="py-2 px-4 my-2 mx-4 w-fit bg-white shadow-xl ring-6 ring-white/50 rounded-lg
+               font-[Barriecito] font-bold text-4xl text-center">
+        Dada Shakespeare
+    </h1>
 </div>
 
 <div class="mb-8 m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">

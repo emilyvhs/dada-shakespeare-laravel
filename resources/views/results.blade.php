@@ -27,10 +27,32 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)]">
 
+<nav class="flex gap-2 items-center my-2 mx-4">
+    <a href="/register"
+       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+        Register
+    </a>
+
+    <a href="/login"
+       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+        Log in
+    </a>
+</nav>
+
+
+
 {{--title of play--}}
-<header class="p-2">
-    <h1 class="font-[Barriecito] font-bold text-4xl text-center">{{ $title }}</h1>
-</header>
+<div class="flex justify-center">
+    <h1 class="py-2 px-4 my-2 mx-4 w-fit bg-white shadow-xl ring-6 ring-white/50 rounded-lg
+           font-[Barriecito] font-bold text-4xl text-center">
+        {{ $title }}
+    </h1>
+</div>
+
+
+
 
 {{--character list--}}
 <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
