@@ -28,36 +28,19 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
 
-<div class="flex justify-center">
-    <nav class="flex flex-col items-center
-                m-4 p-2 gap-1 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+<nav class="flex gap-2 items-center m-4">
+    <a href="/register"
+       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+        Register
+    </a>
 
-        <svg class="menu-open cursor-pointer" onclick="handleMenuOpen()" width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-            <g id="SVGRepo_iconCarrier"> <path d="M20 7L4 7" stroke="#5d0ec0" stroke-width="1.5" stroke-linecap="round"/> <path d="M20 12L4 12" stroke="#5d0ec0" stroke-width="1.5" stroke-linecap="round"/> <path d="M20 17L4 17" stroke="#5d0ec0" stroke-width="1.5" stroke-linecap="round"/> </g>
-        </svg>
-
-        <svg class="hidden menu-close cursor-pointer" onclick="handleMenuClose()" width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-            <g id="SVGRepo_iconCarrier"> <path fill="#05df72" d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z"/> </g>
-        </svg>
-
-        <a href="/register"
-           class="hidden nav-item nav-item-register m-2 p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            Register
-        </a>
-
-        <a href="/login"
-           class="hidden nav-item nav-item-login m-2 p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            Log in
-        </a>
-
-    </nav>
-</div>
+    <a href="/login"
+       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+        Log in
+    </a>
+</nav>
 
 <div class="flex justify-center">
     <header class="py-2 px-4 m-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
