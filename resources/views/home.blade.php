@@ -28,7 +28,7 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
 
-<nav class="flex gap-2 items-center m-4">
+<nav class="flex gap-2 items-center my-2 mx-4">
     <a href="/register"
        class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
               bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
@@ -43,12 +43,13 @@
 </nav>
 
 <div class="flex justify-center">
-    <header class="py-2 px-4 m-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-        <h1 class="font-[Barriecito] font-bold text-4xl">Dada Shakespeare</h1>
-    </header>
+<h1 class="py-2 px-4 my-2 mx-4 w-fit bg-white shadow-xl ring-6 ring-white/50 rounded-lg
+           font-[Barriecito] font-bold text-4xl">
+    Dada Shakespeare
+</h1>
 </div>
 
-<div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+<div class="mb-8 m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     <h2 class="font-[Barriecito] font-bold text-2xl py-1">What is this?</h2>
     <p class="pb-2">Welcome! This is Dada Shakespeare.
         It's a tool to produce shuffled, randomised collages of Shakespeare's plays.</p>
@@ -74,7 +75,7 @@
 
 </div>
 
-<div class="mt-10 m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+<div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     <h2 class="font-[Barriecito] font-bold text-2xl pb-1">How would you like to Dada Shakespeare?</h2>
 
     <form method="POST" action="{{ url('results') }}">
