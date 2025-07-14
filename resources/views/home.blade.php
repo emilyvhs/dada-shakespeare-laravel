@@ -28,10 +28,6 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
 
-<header class="p-2">
-    <h1 class="font-[Barriecito] font-bold text-4xl text-center">Dada Shakespeare</h1>
-</header>
-
 <div class="flex justify-center">
     <nav class="flex flex-col items-center
                 m-4 p-2 gap-1 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
@@ -51,16 +47,22 @@
         <a href="/register"
            class="hidden nav-item nav-item-register m-2 p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
                   bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-           Register
+            Register
         </a>
 
         <a href="/login"
            class="hidden nav-item nav-item-login m-2 p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
                   bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-           Log in
+            Log in
         </a>
 
     </nav>
+</div>
+
+<div class="flex justify-center">
+    <header class="py-2 px-4 m-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+        <h1 class="font-[Barriecito] font-bold text-4xl">Dada Shakespeare</h1>
+    </header>
 </div>
 
 <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
