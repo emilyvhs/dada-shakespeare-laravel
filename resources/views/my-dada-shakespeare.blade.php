@@ -28,6 +28,24 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
 
+<nav class="flex gap-2 items-center m-2">
+    <a href="/"
+       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+        New Dada!
+    </a>
+
+    <form method="POST" action="{{ url('/logout') }}">
+        @csrf
+
+        <div class="w-full flex justify-center">
+            <input type="submit" value="Log out!" name="submit" id="submit"
+                   class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
+        </div>
+    </form>
+
+</nav>
 
 
 <header class="p-2">
@@ -39,15 +57,6 @@
     <p class="pb-2">Nothing here yet!</p>
 </div>
 
-<form method="POST" action="{{ url('/logout') }}">
-    @csrf
-
-    <div class="w-full flex justify-center">
-        <input type="submit" value="Log out!" name="submit" id="submit"
-               class="m-2 p-2 w-1/2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-                    bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
-    </div>
-</form>
 
 
 
