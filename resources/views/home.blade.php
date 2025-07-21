@@ -28,6 +28,7 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
 
+@empty(session('name'))
 <nav class="flex gap-2 items-center m-2">
     <a href="/register"
        class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
@@ -41,6 +42,7 @@
         Log in
     </a>
 </nav>
+@endempty
 
 <div class="flex justify-center">
     <h1 class="py-2 px-4 my-2 mx-4 w-fit bg-white shadow-xl ring-6 ring-white/50 rounded-lg
