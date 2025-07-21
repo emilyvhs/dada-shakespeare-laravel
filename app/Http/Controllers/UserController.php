@@ -70,7 +70,12 @@ class UserController extends Controller
 
     public function displayUserArea()
     {
-        return view('my-dada-shakespeare');
+        if (session('name')) {
+            return view('my-dada-shakespeare');
+        }
+
+        return view('login');
+
     }
 
     public function logout(Request $request)
