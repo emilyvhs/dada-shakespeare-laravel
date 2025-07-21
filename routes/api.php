@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChapterApiController;
 use App\Http\Controllers\CharacterApiController;
 use App\Http\Controllers\ParagraphApiController;
+use App\Http\Controllers\SavedDadaApiController;
 use App\Http\Controllers\WorkApiController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,3 +52,6 @@ Route::get('/paragraphs/work/{WorkID}', [ParagraphApiController::class, 'selecte
 Route::get('/paragraphs/character/shuffle/{CharID}', [ParagraphApiController::class, 'shuffleSelectedCharacter']);
 //get all paragraphs for a specified character (in original order)
 Route::get('/paragraphs/character/{character:CharID}', [ParagraphApiController::class, 'selectedCharacter']);
+
+//save a Dada
+Route::post('/saved-dadas/add', [SavedDadaApiController::class, 'create']);
