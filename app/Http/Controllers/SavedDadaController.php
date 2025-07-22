@@ -15,7 +15,7 @@ class SavedDadaController extends Controller
             return redirect('/login');
         }
 
-        $paragraphIdString = Arr::join(session('paragraph_ids'), ',');
+        $paragraphIdString = session('paragraph_ids')->implode(',');
 
         $newSavedDada = new SavedDada();
 
