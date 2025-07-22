@@ -70,11 +70,11 @@ class UserController extends Controller
 
     public function displayUserArea()
     {
-        if (session('name')) {
-            return view('my-dada-shakespeare');
+        if (!session('name')) {
+            return redirect('/login');
         }
 
-        return view('login');
+        return view('my-dada-shakespeare');
 
     }
 
