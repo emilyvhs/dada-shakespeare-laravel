@@ -52,6 +52,3 @@ Route::get('/paragraphs/work/{WorkID}', [ParagraphApiController::class, 'selecte
 Route::get('/paragraphs/character/shuffle/{CharID}', [ParagraphApiController::class, 'shuffleSelectedCharacter']);
 //get all paragraphs for a specified character (in original order)
 Route::get('/paragraphs/character/{character:CharID}', [ParagraphApiController::class, 'selectedCharacter']);
-
-//save a Dada
-Route::post('/saved-dadas/add', [SavedDadaApiController::class, 'create']);
