@@ -89,6 +89,7 @@ class UserController extends Controller
         //database query with relations to retrieve this user's saved dadas
         $savedDadas = SavedDada::with(['first_play_title', 'second_play_title', 'remove_character_name', 'add_character_name'])
             ->where('user_id', '=', $user_id)
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('my-dada-shakespeare', [

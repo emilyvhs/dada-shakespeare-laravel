@@ -70,8 +70,6 @@
                 from <strong>{{ $savedDada->second_play_title->Title }}</strong></p>
             @endisset
 
-
-
             @if($savedDada->shuffle === 'all')
                 <p class="pb-2">with every speech shuffled</p>
             @endif
@@ -83,6 +81,8 @@
             @if($savedDada->shuffle === 'scene')
                 <p class="pb-2">with the speeches shuffled within each scene</p>
             @endif
+
+            <p>Dada created: {{ $savedDada->created_at }}</p>
         </div>
 
 
