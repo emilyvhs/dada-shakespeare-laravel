@@ -25,22 +25,28 @@ class ResultsController extends Controller
 
         //set $WorkID
         $WorkID = $request->title;
-        //set firstPlay value in SESSION
+        //set firstPlay value in session
         session(['firstPlay' => $WorkID]);
 
         //set $shuffle
         $shuffle = $request->shuffle;
+        //set shuffle value in session
+        session(['shuffle' => $shuffle]);
 
         //set removedCharacter
         $removedCharacter = $request->removeCharacter;
+        //set remove_character in session
+        session(['remove_character' => $removedCharacter]);
 
         //set SecondPlay
         $secondPlay = $request->secondPlay;
-        //set secondPlay value in SESSION
+        //set secondPlay value in session
         session(['secondPlay' => $secondPlay]);
 
         //set addedCharacter
         $addedCharacter = $request->addCharacter;
+        //set add_character in session
+        session(['add_character' => $addedCharacter]);
 
         //set $title to the value of LongTitle in the Works table
         $title = DB::table('Works')
@@ -125,6 +131,9 @@ class ResultsController extends Controller
                 ->inRandomOrder()
                 ->get();
         }
+
+        //set paragraph_ids in session
+        session(['paragraph_ids' => $shuffledParagraphs->pluck('ParagraphID')]);
 
         return view('results', [
             'title' => $title,
