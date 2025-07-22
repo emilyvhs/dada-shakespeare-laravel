@@ -82,7 +82,17 @@ class UserController extends Controller
             return redirect('/login');
         }
 
-        return view('my-dada-shakespeare');
+        //retrieve user_id from session
+        $user_id = session('user_id');
+
+        //database query to retrieve this user's saved dadas
+        $savedDadas = DB::table('saved_dadas')
+            ->where('user_id', '=', $user_id)
+            ->get();
+
+        return view('my-dada-shakespeare', [
+            'savedDadas' => $savedDadas,
+        ]);
 
     }
 

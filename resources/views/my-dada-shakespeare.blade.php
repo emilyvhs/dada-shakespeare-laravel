@@ -54,7 +54,15 @@
 
 <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     <h2 class="font-[Barriecito] font-bold text-2xl py-1">Your saved Dadas</h2>
-    <p class="pb-2">Nothing here yet!</p>
+    @foreach($savedDadas as $savedDada)
+        @php
+        $firstPlayTitle = DB::table('Works')->where('WorkID', '=', $savedDada->first_play)->value('Title');
+        @endphp
+        <p class="pb-2">{{ $firstPlayTitle }}</p>
+    @endforeach
+    @empty($savedDadas)
+        <p class="pb-2">Nothing here yet!</p>
+    @endempty
 </div>
 
 
