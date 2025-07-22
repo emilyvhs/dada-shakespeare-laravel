@@ -64,6 +64,14 @@ class UserController extends Controller
         //set name in session
         session(['name' => $name]);
 
+        //database query to retrieve id
+        $user_id = DB::table('users')
+            ->where('email', '=', $email)
+            ->value('id');
+
+        //set user_id in session
+        session(['user_id' => $user_id]);
+
         //redirect to user area
         return redirect('/my-dada-shakespeare');
     }
