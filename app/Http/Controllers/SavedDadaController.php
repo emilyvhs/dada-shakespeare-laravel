@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SavedDada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class SavedDadaController extends Controller
 {
@@ -37,12 +38,16 @@ class SavedDadaController extends Controller
 
     public function find(SavedDada $savedDada)
     {
+        $paragraphs = Str::of($savedDada->paragraphs)->explode(',');
+
         //database query with relations to retrieve this user's saved dadas
         $savedDadaWithRelations = SavedDada::with(['first_play_title', 'second_play_title', 'remove_character_name', 'add_character_name'])
             ->find($savedDada);
 
+
         return view('/saved-dadas', [
-            'savedDada' => $savedDadaWithRelations
+            'savedDada' => $savedDadaWithRelations,
+            'paragraphs' => $paragraphs,
         ]);
     }
 }

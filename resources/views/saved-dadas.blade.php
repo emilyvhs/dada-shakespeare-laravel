@@ -28,7 +28,7 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
 
-@php dd($savedDada) @endphp
+@php dd($paragraphs) @endphp
 
 {{--title of play--}}
 <div class="flex justify-center">
