@@ -58,7 +58,34 @@
 
     @foreach($savedDadas as $savedDada)
 
-        <p class="pb-2">{{ $savedDada->first_play_title->Title }}</p>
+        <div class="m-2 p-2 border-2 rounded-lg cursor-pointer border-violet-800 hover:border-green-400">
+
+            <p class="pb-2"><strong>{{ $savedDada->first_play_title->Title }}</strong>
+                @isset($savedDada->remove_character_name->CharName) without <strong>{{ $savedDada->remove_character_name->CharName }}</strong>
+                @endisset
+            </p>
+
+            @isset($savedDada->add_character_name->CharName)
+                <p class="pb-2">featuring <strong>{{ $savedDada->add_character_name->CharName }}</strong>
+                from <strong>{{ $savedDada->second_play_title->Title }}</strong></p>
+            @endisset
+
+
+
+            @if($savedDada->shuffle === 'all')
+                <p class="pb-2">with every speech shuffled</p>
+            @endif
+
+            @if($savedDada->shuffle === 'act')
+                <p class="pb-2">with the speeches shuffled within each act</p>
+            @endif
+
+            @if($savedDada->shuffle === 'scene')
+                <p class="pb-2">with the speeches shuffled within each scene</p>
+            @endif
+        </div>
+
+
 
     @endforeach
 
