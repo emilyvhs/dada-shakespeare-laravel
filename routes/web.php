@@ -30,3 +30,5 @@ Route::post('/logout', [UserController::class, 'logout']);
 
 //save new dada
 Route::post('/add', [SavedDadaController::class, 'create']);
+//display selected saved dada
+Route::get('/saved-dadas/{savedDada:id}', [SavedDadaController::class, 'find']);
