@@ -15,4 +15,9 @@ class SavedDada extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function first_play_title(): BelongsTo
+    {
+        return $this->belongsTo(Work::class, 'first_play', 'WorkID');
+    }
 }

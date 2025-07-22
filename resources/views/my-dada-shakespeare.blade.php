@@ -47,6 +47,7 @@
 
 </nav>
 
+{{--@php dd($savedDadas) @endphp--}}
 
 <header class="p-2">
     <h1 class="font-[Barriecito] font-bold text-4xl text-center">Welcome, {{ session('name') }}!</h1>
@@ -54,19 +55,17 @@
 
 <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     <h2 class="font-[Barriecito] font-bold text-2xl py-1">Your saved Dadas</h2>
+
     @foreach($savedDadas as $savedDada)
-        @php
-        $firstPlayTitle = DB::table('Works')->where('WorkID', '=', $savedDada->first_play)->value('Title');
-        @endphp
-        <p class="pb-2">{{ $firstPlayTitle }}</p>
+
+        <p class="pb-2">{{ $savedDada->first_play_title->Title }}</p>
+
     @endforeach
+
     @empty($savedDadas)
         <p class="pb-2">Nothing here yet!</p>
     @endempty
 </div>
-
-
-
 
 
 

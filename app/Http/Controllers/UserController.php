@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SavedDada;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -85,8 +86,8 @@ class UserController extends Controller
         //retrieve user_id from session
         $user_id = session('user_id');
 
-        //database query to retrieve this user's saved dadas
-        $savedDadas = DB::table('saved_dadas')
+        //database query with relations to retrieve this user's saved dadas
+        $savedDadas = SavedDada::with('first_play_title')
             ->where('user_id', '=', $user_id)
             ->get();
 
