@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SavedDada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class SavedDadaController extends Controller
@@ -38,16 +39,54 @@ class SavedDadaController extends Controller
 
     public function find(SavedDada $savedDada)
     {
-        $paragraphs = Str::of($savedDada->paragraphs)->explode(',');
+        //create an array from the string of paragraph ids
+        $paragraphIdArray = Str::of($savedDada->paragraphs)->explode(',')->toArray();
 
-        //database query with relations to retrieve this user's saved dadas
-        $savedDadaWithRelations = SavedDada::with(['first_play_title', 'second_play_title', 'remove_character_name', 'add_character_name'])
-            ->find($savedDada);
+        //use array and join Characters table to retrieve paragraphs
+        $shuffledParagraphs = [];
+        foreach($paragraphIdArray as $paragraphId) {
+            $paragraph = DB::table('Paragraphs')
+                ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
 
+                ->where('ParagraphID', '=', $paragraphId)
+                ->first();
+            array_push($shuffledParagraphs, $paragraph);
+        }
+
+        //set $savedDadaWorkID of first_play
+        $savedDadaWorkID = $savedDada->first_play;
+        //set $title to LongTitle of play by WorkID
+        $title = DB::table('Works')
+            ->where('WorkID', '=', $savedDadaWorkID)
+            ->value('LongTitle');
+
+        //set $shuffle
+        $shuffle = $savedDada->shuffle;
+
+        //set $removedCharacter
+        $removedCharacter = $savedDada->remove_character;
+
+        //set $addedCharacter
+        $addedCharacter = $savedDada->add_character;
+
+        //retrieve character list
+        $characters = DB::table('Characters')
+            ->where('Works', 'LIKE', "%$savedDadaWorkID%")
+            //exclude characters who do not speak
+            ->where('SpeechCount', '!=', 0)
+            //exclude CharNames that refer to groups of already listed characters/stage directions
+            ->whereNotIn('CharName', ['All', 'All Citizens', 'All Conspirators', 'All Ladies', 'All Lords', 'All Servants', 'All The People', 'Another', 'Both', 'Both Citizens', 'Both Tribunes', 'Brothers', 'Several Citizens', 'Some Speak', '(stage directions)'])
+            //exclude removedCharacter
+            ->whereNot('CharID', '=', $removedCharacter)
+            //include addedCharacter
+            ->orWhere('CharID', '=', $addedCharacter)
+            ->get();
 
         return view('/saved-dadas', [
-            'savedDada' => $savedDadaWithRelations,
-            'paragraphs' => $paragraphs,
+            'title' => $title,
+            'characters' => $characters,
+            'shuffle' => $shuffle,
+            'shuffledParagraphs' => $shuffledParagraphs,
         ]);
     }
 }
