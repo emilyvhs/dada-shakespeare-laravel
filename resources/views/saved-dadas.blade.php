@@ -104,11 +104,15 @@
 {{--if shuffling every speech--}}
 @if ($shuffle === 'all')
 
-    @foreach($shuffledParagraphs as $paragraph)
-        <p class="font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
-        <p class="whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
-        <br>
-    @endforeach
+    <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+
+        @foreach($shuffledParagraphs as $paragraph)
+            <p class="font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
+            <p class="whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
+            <br>
+        @endforeach
+
+    </div>
 
 @endif
 
