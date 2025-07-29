@@ -27,7 +27,7 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)]">
 
-<nav class="flex gap-2 items-center m-2">
+<nav class="mx-2 mt-2 flex gap-2 items-center">
     <a href="/"
        class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
               bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
@@ -36,7 +36,6 @@
 
     <form method="POST" action="{{ url('/add') }}">
         @csrf
-
         <div class="w-full flex justify-center">
             <input type="submit" value="Save this Dada!" name="submit" id="submit"
                    class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
@@ -45,51 +44,42 @@
     </form>
 </nav>
 
-
-
 {{--title of play--}}
-<div class="flex justify-center">
-    <h1 class="py-2 px-4 my-2 mx-4 w-fit bg-white shadow-xl ring-6 ring-white/50 rounded-lg
-           font-[Barriecito] font-bold text-4xl text-center">
+<div class="m-6 p-2 flex justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+    <h1 class="w-fit font-[Barriecito] font-bold text-4xl text-center">
         {{ $title }}
     </h1>
 </div>
 
-
-
-
 {{--character list--}}
-<div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-
-    <h2 class="font-[Barriecito] font-bold text-2xl pb-1">Characters</h2>
-
+<div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+    <h2 class="p-2 font-[Barriecito] font-bold text-2xl">Characters</h2>
     @foreach($characters as $character)
-        <p>{{ $character->CharName }}</p>
+        <p class="px-2">{{ $character->CharName }}</p>
     @endforeach
-
 </div>
 
 {{--if shuffling within each scene--}}
 @if($shuffle === 'scene')
-    <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
 
+    <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     @foreach($shuffledParagraphs as $paragraph)
 
         @if ($loop->first)
-            <h3 class="font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
+            <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
             <br>
             @php $actScene = $paragraph @endphp
         @endif
 
         @if ($paragraph->Section != $actScene->Section ||
              $paragraph->Chapter != $actScene->Chapter)
-            <h3 class="font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
+            <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
             <br>
             @php $actScene = $paragraph @endphp
         @endif
 
-        <p class="font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
-        <p class="whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
+        <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
+        <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
         <br>
 
     @endforeach
@@ -98,23 +88,23 @@
 
 {{--if shuffling within each act--}}
 @if($shuffle === 'act')
-    <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+    <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     @foreach($shuffledParagraphs as $paragraph)
 
         @if ($loop->first)
-            <h3 class="font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
+            <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
             <br>
             @php $act = $paragraph @endphp
         @endif
 
         @if ($paragraph->Section != $act->Section)
-            <h3 class="font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
+            <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
             <br>
             @php $act = $paragraph @endphp
         @endif
 
-        <p class="font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
-        <p class="whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
+        <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
+        <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
         <br>
 
     @endforeach
@@ -123,17 +113,13 @@
 
 {{--if shuffling every speech--}}
 @if ($shuffle === 'all')
-
-    <div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-
+    <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
         @foreach($shuffledParagraphs as $paragraph)
-            <p class="font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
-            <p class="whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
+            <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
+            <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
             <br>
         @endforeach
-
     </div>
-
 @endif
 
 </body>
