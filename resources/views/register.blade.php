@@ -28,7 +28,7 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
 
-<nav class="flex gap-2 items-center mx-2 mt-2">
+<nav class="mx-2 mt-2 flex gap-2 items-center">
     <a href="/"
        class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
               bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
