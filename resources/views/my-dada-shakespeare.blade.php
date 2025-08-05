@@ -26,9 +26,9 @@
     @endif
 </head>
 
-<body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
+<body class="bg-[url(/resources/images/parchment-background.jpg)]">
 
-<nav class="flex gap-2 items-center m-2">
+<nav class="mx-2 mt-2 flex gap-2 items-center">
     <a href="/"
        class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
               bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
@@ -37,27 +37,24 @@
 
     <form method="POST" action="{{ url('/logout') }}">
         @csrf
-
         <div class="w-full flex justify-center">
             <input type="submit" value="Log out!" name="submit" id="submit"
                    class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
               bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
         </div>
     </form>
-
 </nav>
 
-{{--@php dd($savedDadas) @endphp--}}
+<div class="m-6 p-2 flex justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+    <h1 class="w-fit font-[Barriecito] font-bold text-4xl text-center">
+        Welcome, {{ strtoupper(session('name')) }}!
+    </h1>
+</div>
 
-<header class="p-2">
-    <h1 class="font-[Barriecito] font-bold text-4xl text-center">Welcome, {{ session('name') }}!</h1>
-</header>
-
-<div class="m-4 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h2 class="font-[Barriecito] font-bold text-2xl py-1">Your saved Dadas</h2>
+<div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+    <h2 class="p-2 font-[Barriecito] font-bold text-2xl">Your saved Dadas</h2>
 
     @foreach($savedDadas as $savedDada)
-
         <div class="m-2 p-2 border-2 rounded-lg cursor-pointer border-violet-800 hover:border-green-400">
             <a href="/saved-dadas/{{ $savedDada->id }}">
 
@@ -86,17 +83,12 @@
                 <p>Dada created: {{ $savedDada->created_at }}</p>
             </a>
         </div>
-
-
-
     @endforeach
 
     @empty($savedDadas)
-        <p class="pb-2">Nothing here yet!</p>
+        <p class="pb-2">No saved Dadas yet!</p>
     @endempty
 </div>
-
-
 
 </body>
 </html>
