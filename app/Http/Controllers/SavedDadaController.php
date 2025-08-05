@@ -47,46 +47,32 @@ class SavedDadaController extends Controller
         foreach($paragraphIdArray as $paragraphId) {
             $paragraph = DB::table('Paragraphs')
                 ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
-
                 ->where('ParagraphID', '=', $paragraphId)
                 ->first();
             array_push($shuffledParagraphs, $paragraph);
         }
 
-        //set $savedDadaWorkID of first_play
-        $savedDadaWorkID = $savedDada->first_play;
-        //set $title to LongTitle of play by WorkID
-        $title = DB::table('Works')
-            ->where('WorkID', '=', $savedDadaWorkID)
-            ->value('LongTitle');
-
-        //set $shuffle
-        $shuffle = $savedDada->shuffle;
-
-        //set $removedCharacter
-        $removedCharacter = $savedDada->remove_character;
-
-        //set $addedCharacter
-        $addedCharacter = $savedDada->add_character;
+        //set $savedDadaWithRelations
+        $savedDadaWithRelations = SavedDada::with(['first_play_title', 'second_play_title', 'remove_character_name', 'add_character_name', 'user'])
+            ->find($savedDada->id);
 
         //retrieve character list
         $characters = DB::table('Characters')
-            ->where('Works', 'LIKE', "%$savedDadaWorkID%")
+            ->where('Works', 'LIKE', "%$savedDada->first_play%")
             //exclude characters who do not speak
             ->where('SpeechCount', '!=', 0)
             //exclude CharNames that refer to groups of already listed characters/stage directions
             ->whereNotIn('CharName', ['All', 'All Citizens', 'All Conspirators', 'All Ladies', 'All Lords', 'All Servants', 'All The People', 'Another', 'Both', 'Both Citizens', 'Both Tribunes', 'Brothers', 'Several Citizens', 'Some Speak', '(stage directions)'])
             //exclude removedCharacter
-            ->whereNot('CharID', '=', $removedCharacter)
+            ->whereNot('CharID', '=', $savedDada->remove_character)
             //include addedCharacter
-            ->orWhere('CharID', '=', $addedCharacter)
+            ->orWhere('CharID', '=', $savedDada->add_character)
             ->get();
 
         return view('/saved-dadas', [
-            'title' => $title,
             'characters' => $characters,
-            'shuffle' => $shuffle,
             'shuffledParagraphs' => $shuffledParagraphs,
+            'savedDada' => $savedDadaWithRelations,
         ]);
     }
 }
