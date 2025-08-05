@@ -66,11 +66,45 @@
     </nav>
 @endempty
 
+{{--@php dd($savedDada) @endphp--}}
+
 {{--title of play--}}
-<div class="m-6 p-2 flex justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h1 class="w-fit font-[Barriecito] font-bold text-4xl text-center">
-        {{ $title }}
+<div class="m-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+    <h1 class="font-[Barriecito] font-bold text-4xl text-center">
+        {{ $savedDada->first_play_title->LongTitle }} <br>
+        by {{ strtoupper($savedDada->user->name) }} <br>
+        after William Shakespeare
     </h1>
+
+    <h2 class="p-2 font-[Barriecito] font-bold text-2xl text-center">
+    @isset($savedDada->remove_character_name->CharName)
+        presented without {{ $savedDada->remove_character_name->CharName }},
+        <br>
+    @endisset
+
+    @isset($savedDada->add_character_name->CharName)
+        featuring {{ $savedDada->add_character_name->CharName }} from {{ $savedDada->second_play_title->LongTitle }},
+        <br>
+    @endisset
+
+    @if((!$savedDada->remove_character_name) && (!$savedDada->add_character_name))
+        featuring the original cast of players,
+        <br>
+    @endif
+
+    @if($savedDada->shuffle === 'all')
+        with every speech shuffled
+    @endif
+
+    @if($savedDada->shuffle === 'act')
+        with the speeches shuffled within each act
+    @endif
+
+    @if($savedDada->shuffle === 'scene')
+        with the speeches shuffled within each scene
+    @endif
+
+    </h2>
 </div>
 
 {{--character list--}}
@@ -82,9 +116,12 @@
 </div>
 
 {{--if shuffling within each scene--}}
-@if($shuffle === 'scene')
+@if($savedDada->shuffle === 'scene')
 
     <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+
+
+
         @foreach($shuffledParagraphs as $paragraph)
 
             @if ($loop->first)
@@ -109,7 +146,7 @@
 @endif
 
 {{--if shuffling within each act--}}
-@if($shuffle === 'act')
+@if($savedDada->shuffle === 'act')
     <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
         @foreach($shuffledParagraphs as $paragraph)
 
@@ -134,7 +171,7 @@
 @endif
 
 {{--if shuffling every speech--}}
-@if ($shuffle === 'all')
+@if ($savedDada->shuffle === 'all')
     <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
         @foreach($shuffledParagraphs as $paragraph)
             <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
