@@ -68,11 +68,40 @@
     </nav>
 @endempty
 
-{{--title of play--}}
-<div class="m-6 p-2 flex justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h1 class="w-fit font-[Barriecito] font-bold text-4xl text-center">
+{{--title of play and Dada settings--}}
+<div class="m-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+    <h1 class="font-[Barriecito] font-bold text-4xl text-center">
         {{ $title }}
     </h1>
+
+    <h2 class="p-2 font-[Barriecito] font-bold text-2xl text-center">
+        @isset($removedCharacterName)
+            presented without {{ $removedCharacterName }},
+            <br>
+        @endisset
+
+        @isset($addedCharacterName)
+            featuring {{ $addedCharacterName }} from {{ $secondPlayTitle }},
+            <br>
+        @endisset
+
+        @if((!$removedCharacterName) && (!$addedCharacterName))
+            featuring the original cast of players,
+            <br>
+        @endif
+
+        @if($shuffle === 'all')
+            with every speech shuffled
+        @endif
+
+        @if($shuffle === 'act')
+            with the speeches shuffled within each act
+        @endif
+
+        @if($shuffle === 'scene')
+            with the speeches shuffled within each scene
+        @endif
+    </h2>
 </div>
 
 {{--character list--}}
