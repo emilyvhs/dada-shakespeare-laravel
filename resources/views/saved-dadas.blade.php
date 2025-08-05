@@ -173,6 +173,7 @@
 {{--if shuffling every speech--}}
 @if ($savedDada->shuffle === 'all')
     <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+        <br>
         @foreach($shuffledParagraphs as $paragraph)
             <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
             <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
