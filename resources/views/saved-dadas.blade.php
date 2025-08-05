@@ -46,13 +46,23 @@
 
 @empty(session('name'))
     <nav class="mx-2 mt-2 flex gap-2 items-center">
-
         <a href="/"
            class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
               bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
             Dada Shakespeare
         </a>
 
+        <a href="/register"
+           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+            Register
+        </a>
+
+        <a href="/login"
+           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+            Log in
+        </a>
     </nav>
 @endempty
 
