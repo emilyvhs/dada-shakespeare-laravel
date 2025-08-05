@@ -33,20 +33,32 @@ class ResultsController extends Controller
         //set shuffle value in session
         session(['shuffle' => $shuffle]);
 
-        //set removedCharacter
+        //set $removedCharacter
         $removedCharacter = $request->removeCharacter;
         //set remove_character in session
         session(['remove_character' => $removedCharacter]);
+        //set $removedCharacterName to the value of CharName in the Characters table
+        $removedCharacterName = DB::table('Characters')
+            ->where('CharID', '=', $removedCharacter)
+            ->value('CharName');
 
-        //set SecondPlay
+        //set $secondPlay
         $secondPlay = $request->secondPlay;
         //set secondPlay value in session
         session(['secondPlay' => $secondPlay]);
+        //set $secondPlayTitle to the value of LongTitle in the Works table
+        $secondPlayTitle = DB::table('Works')
+            ->where('WorkID', '=', $secondPlay)
+            ->value('LongTitle');
 
-        //set addedCharacter
+        //set $addedCharacter
         $addedCharacter = $request->addCharacter;
         //set add_character in session
         session(['add_character' => $addedCharacter]);
+        //set $addedCharacterName to the value of CharName in the Characters table
+        $addedCharacterName = DB::table('Characters')
+            ->where('CharID', '=', $addedCharacter)
+            ->value('CharName');
 
         //set $title to the value of LongTitle in the Works table
         $title = DB::table('Works')
@@ -140,6 +152,9 @@ class ResultsController extends Controller
             'shuffledParagraphs' => $shuffledParagraphs,
             'characters' => $characters,
             'shuffle' => $shuffle,
+            'secondPlayTitle' => $secondPlayTitle,
+            'removedCharacterName' => $removedCharacterName,
+            'addedCharacterName' => $addedCharacterName,
         ]);
     }
 }
