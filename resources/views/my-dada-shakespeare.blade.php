@@ -85,9 +85,9 @@
         </div>
     @endforeach
 
-    @empty($savedDadas)
-        <p class="pb-2">No saved Dadas yet!</p>
-    @endempty
+    @if($savedDadas->isEmpty())
+        <p class="p-2">No saved Dadas yet!</p>
+    @endif
 </div>
 
 </body>
