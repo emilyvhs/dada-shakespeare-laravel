@@ -90,5 +90,28 @@
     @endif
 </div>
 
+<div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
+    <h2 class="p-2 font-[Barriecito] font-bold text-2xl">Your account</h2>
+    <p class="p-2"><strong>Username: </strong>{{ $user->name }}</p>
+    <p class="p-2"><strong>Email: </strong>{{ $user->email }}</p>
+    <div class="p-2 flex gap-2">
+        <a href="/"
+           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+            Edit account details
+        </a>
+        <a href="/"
+           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+            Reset password
+        </a>
+        <a href="/"
+           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+            Delete account
+        </a>
+    </div>
+</div>
+
 </body>
 </html>
