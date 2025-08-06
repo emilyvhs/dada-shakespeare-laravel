@@ -85,6 +85,10 @@ class UserController extends Controller
 
         //retrieve user_id from session
         $user_id = session('user_id');
+        //database query to retrieve user info
+        $user = DB::table('users')
+            ->where('id', '=', $user_id)
+            ->get();
 
         //database query with relations to retrieve this user's saved dadas
         $savedDadas = SavedDada::with(['first_play_title', 'second_play_title', 'remove_character_name', 'add_character_name'])
@@ -94,6 +98,7 @@ class UserController extends Controller
 
         return view('my-dada-shakespeare', [
             'savedDadas' => $savedDadas,
+            'user' => $user,
         ]);
 
     }
