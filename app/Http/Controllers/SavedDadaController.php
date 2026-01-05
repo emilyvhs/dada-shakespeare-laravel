@@ -12,11 +12,6 @@ class SavedDadaController extends Controller
 {
     public function create()
     {
-        //check there's a user logged into the session and redirect if not
-        if (!session('name')) {
-            return redirect('/login');
-        }
-
         //implode array of paragraph ids into a string
         $paragraphIdString = session('paragraph_ids')->implode(',');
 
@@ -24,7 +19,6 @@ class SavedDadaController extends Controller
         $newSavedDada = new SavedDada();
 
         //populate newSaved Dada with info from session
-        $newSavedDada->user_id = session('user_id');
         $newSavedDada->first_play = session('firstPlay');
         $newSavedDada->shuffle = session('shuffle');
         $newSavedDada->paragraphs = $paragraphIdString;
@@ -34,6 +28,7 @@ class SavedDadaController extends Controller
 
         $newSavedDada->save();
 
+        //TODO this needs to redirect to the unique savedDada url
         return redirect('/my-dada-shakespeare');
     }
 

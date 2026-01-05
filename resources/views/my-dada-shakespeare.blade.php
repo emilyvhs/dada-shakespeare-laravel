@@ -98,16 +98,6 @@
         <a href="/"
            class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
                   bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            Edit account details
-        </a>
-        <a href="/"
-           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            Reset password
-        </a>
-        <a href="/"
-           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
             Delete account
         </a>
     </div>

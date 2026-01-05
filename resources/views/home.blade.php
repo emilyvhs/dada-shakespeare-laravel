@@ -28,41 +28,41 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
 
-@if(session('name'))
-    <nav class="flex gap-2 items-center m-2">
-        <a href="/my-dada-shakespeare"
-           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            My saved Dadas
-        </a>
+{{--@if(session('name'))--}}
+{{--    <nav class="flex gap-2 items-center m-2">--}}
+{{--        <a href="/my-dada-shakespeare"--}}
+{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
+{{--              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
+{{--            My saved Dadas--}}
+{{--        </a>--}}
 
-        <form method="POST" action="{{ url('/logout') }}">
-            @csrf
+{{--        <form method="POST" action="{{ url('/logout') }}">--}}
+{{--            @csrf--}}
 
-            <div class="w-full flex justify-center">
-                <input type="submit" value="Log out!" name="submit" id="submit"
-                       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
-            </div>
-        </form>
-    </nav>
-@endif
+{{--            <div class="w-full flex justify-center">--}}
+{{--                <input type="submit" value="Log out!" name="submit" id="submit"--}}
+{{--                       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
+{{--              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>--}}
+{{--            </div>--}}
+{{--        </form>--}}
+{{--    </nav>--}}
+{{--@endif--}}
 
-@empty(session('name'))
-    <nav class="mx-2 mt-2 flex gap-2 items-center">
-        <a href="/register"
-           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            Register
-        </a>
+{{--@empty(session('name'))--}}
+{{--    <nav class="mx-2 mt-2 flex gap-2 items-center">--}}
+{{--        <a href="/register"--}}
+{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
+{{--                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
+{{--            Register--}}
+{{--        </a>--}}
 
-        <a href="/login"
-           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            Log in
-        </a>
-    </nav>
-@endempty
+{{--        <a href="/login"--}}
+{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
+{{--                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
+{{--            Log in--}}
+{{--        </a>--}}
+{{--    </nav>--}}
+{{--@endempty--}}
 
 <div class="m-6 p-2 flex justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     <h1 class="w-fit font-[Barriecito] font-bold text-4xl text-center">
