@@ -27,47 +27,6 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)]">
 
-{{--@if(session('name'))--}}
-{{--    <nav class="mx-2 mt-2 flex gap-2 items-center">--}}
-{{--        <a href="/"--}}
-{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
-{{--                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
-{{--            Dada again!--}}
-{{--        </a>--}}
-
-{{--        <form method="POST" action="{{ url('/add') }}">--}}
-{{--            @csrf--}}
-{{--            <div class="w-full flex justify-center">--}}
-{{--                <input type="submit" value="Save this Dada!" name="submit" id="submit"--}}
-{{--                       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
-{{--                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>--}}
-{{--            </div>--}}
-{{--        </form>--}}
-{{--    </nav>--}}
-{{--@endif--}}
-
-{{--@empty(session('name'))--}}
-{{--    <nav class="mx-2 mt-2 flex gap-2 items-center">--}}
-{{--        <a href="/"--}}
-{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
-{{--                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
-{{--            Dada again!--}}
-{{--        </a>--}}
-
-{{--        <a href="/register"--}}
-{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
-{{--                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
-{{--            Register--}}
-{{--        </a>--}}
-
-{{--        <a href="/login"--}}
-{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
-{{--                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
-{{--            Log in--}}
-{{--        </a>--}}
-{{--    </nav>--}}
-{{--@endempty--}}
-
 <nav class="mx-2 mt-2 flex gap-2 items-center">
     <a href="/"
        class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
@@ -78,7 +37,7 @@
     <form method="POST" action="{{ url('/add') }}">
         @csrf
         <div class="w-full flex justify-center">
-            <input type="submit" value="Share this Dada?" name="submit" id="submit"
+            <input type="submit" value="Save this Dada" name="submit" id="submit"
                                class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
                           bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
         </div>
@@ -88,7 +47,8 @@
 {{--title of play and Dada settings--}}
 <div class="m-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     <h1 class="font-[Barriecito] font-bold text-4xl text-center">
-        {{ $title }}
+        {{ $title }} <br>
+        by William Shakespeare
     </h1>
 
     <h2 class="p-2 font-[Barriecito] font-bold text-2xl text-center">

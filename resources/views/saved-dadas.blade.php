@@ -69,7 +69,7 @@
 <div class="m-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     <h1 class="font-[Barriecito] font-bold text-4xl text-center">
         {{ $savedDada->first_play_title->LongTitle }} <br>
-        after William Shakespeare
+        by William Shakespeare
     </h1>
 
     <h2 class="p-2 font-[Barriecito] font-bold text-2xl text-center">
