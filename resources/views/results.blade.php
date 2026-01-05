@@ -75,11 +75,14 @@
         Dada again!
     </a>
 
-    <a href="/register"
-       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-        Share this Dada?
-    </a>
+    <form method="POST" action="{{ url('/add') }}">
+        @csrf
+        <div class="w-full flex justify-center">
+            <input type="submit" value="Share this Dada?" name="submit" id="submit"
+                               class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+                          bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
+        </div>
+    </form>
 </nav>
 
 {{--title of play and Dada settings--}}

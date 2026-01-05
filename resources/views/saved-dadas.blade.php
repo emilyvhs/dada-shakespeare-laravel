@@ -28,51 +28,56 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)]">
 
-@if(session('name'))
-    <nav class="mx-2 mt-2 flex gap-2 items-center">
-        <a href="/my-dada-shakespeare"
-           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+{{--@if(session('name'))--}}
+{{--    <nav class="mx-2 mt-2 flex gap-2 items-center">--}}
+{{--        <a href="/my-dada-shakespeare"--}}
+{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
+{{--              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
+{{--            My saved Dadas--}}
+{{--        </a>--}}
+
+{{--        <a href="/"--}}
+{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
+{{--              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
+{{--            Dada again!--}}
+{{--        </a>--}}
+{{--    </nav>--}}
+{{--@endif--}}
+
+{{--@empty(session('name'))--}}
+{{--    <nav class="mx-2 mt-2 flex gap-2 items-center">--}}
+{{--        <a href="/"--}}
+{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
+{{--              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
+{{--            Dada Shakespeare--}}
+{{--        </a>--}}
+
+{{--        <a href="/register"--}}
+{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
+{{--                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
+{{--            Register--}}
+{{--        </a>--}}
+
+{{--        <a href="/login"--}}
+{{--           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]--}}
+{{--                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">--}}
+{{--            Log in--}}
+{{--        </a>--}}
+{{--    </nav>--}}
+{{--@endempty--}}
+
+<nav class="mx-2 mt-2 flex gap-2 items-center">
+    <a href="/"
+       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
               bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            My saved Dadas
-        </a>
-
-        <a href="/"
-           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            Dada again!
-        </a>
-    </nav>
-@endif
-
-@empty(session('name'))
-    <nav class="mx-2 mt-2 flex gap-2 items-center">
-        <a href="/"
-           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            Dada Shakespeare
-        </a>
-
-        <a href="/register"
-           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            Register
-        </a>
-
-        <a href="/login"
-           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
-                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            Log in
-        </a>
-    </nav>
-@endempty
-
-{{--@php dd($savedDada) @endphp--}}
+        Dada again!
+    </a>
+</nav>
 
 {{--title of play and Dada settings--}}
 <div class="m-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
     <h1 class="font-[Barriecito] font-bold text-4xl text-center">
         {{ $savedDada->first_play_title->LongTitle }} <br>
-        by {{ strtoupper($savedDada->user->name) }} <br>
         after William Shakespeare
     </h1>
 

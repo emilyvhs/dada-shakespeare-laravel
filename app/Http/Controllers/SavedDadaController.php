@@ -28,8 +28,9 @@ class SavedDadaController extends Controller
 
         $newSavedDada->save();
 
-        //TODO this needs to redirect to the unique savedDada url
-        return redirect('/my-dada-shakespeare');
+        return redirect()->action(
+            [SavedDadaController::class, 'find'], ['savedDada' => $newSavedDada]
+        );
     }
 
     public function find(SavedDada $savedDada)
@@ -48,7 +49,7 @@ class SavedDadaController extends Controller
         }
 
         //set $savedDadaWithRelations
-        $savedDadaWithRelations = SavedDada::with(['first_play_title', 'second_play_title', 'remove_character_name', 'add_character_name', 'user'])
+        $savedDadaWithRelations = SavedDada::with(['first_play_title', 'second_play_title', 'remove_character_name', 'add_character_name'])
             ->find($savedDada->id);
 
         //retrieve character list
