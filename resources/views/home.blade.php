@@ -196,7 +196,10 @@
     </div>
 </section>
 
-
+<footer class="mt-10 p-2 bg-black shadow-xl ring-6 ring-black/50 text-right sm:text-center text-white text-sm">
+    <p>Dada Shakespeare uses the <a href="https://www.opensourceshakespeare.org/" class="underline font-bold hover:text-green-400">Open Source Shakespeare</a> database as the source for the work of William Shakespeare</p>
+    <p>Made by <a href="https://emilyvhs.com/" class="underline font-bold hover:text-green-400">Emily VHS</a></p>
+</footer>
 
 </body>
 </html>
