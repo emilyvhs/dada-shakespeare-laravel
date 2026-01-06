@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('saved_dadas', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
             $table->string('first_play');
             $table->string('shuffle');
             $table->string('remove_character')->nullable();

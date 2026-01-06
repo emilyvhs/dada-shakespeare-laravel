@@ -12,11 +12,6 @@ class SavedDadaController extends Controller
 {
     public function create()
     {
-        //check there's a user logged into the session and redirect if not
-        if (!session('name')) {
-            return redirect('/login');
-        }
-
         //implode array of paragraph ids into a string
         $paragraphIdString = session('paragraph_ids')->implode(',');
 
@@ -24,7 +19,6 @@ class SavedDadaController extends Controller
         $newSavedDada = new SavedDada();
 
         //populate newSaved Dada with info from session
-        $newSavedDada->user_id = session('user_id');
         $newSavedDada->first_play = session('firstPlay');
         $newSavedDada->shuffle = session('shuffle');
         $newSavedDada->paragraphs = $paragraphIdString;
@@ -34,7 +28,9 @@ class SavedDadaController extends Controller
 
         $newSavedDada->save();
 
-        return redirect('/my-dada-shakespeare');
+        return redirect()->action(
+            [SavedDadaController::class, 'find'], ['savedDada' => $newSavedDada]
+        );
     }
 
     public function find(SavedDada $savedDada)
@@ -53,7 +49,7 @@ class SavedDadaController extends Controller
         }
 
         //set $savedDadaWithRelations
-        $savedDadaWithRelations = SavedDada::with(['first_play_title', 'second_play_title', 'remove_character_name', 'add_character_name', 'user'])
+        $savedDadaWithRelations = SavedDada::with(['first_play_title', 'second_play_title', 'remove_character_name', 'add_character_name'])
             ->find($savedDada->id);
 
         //retrieve character list
