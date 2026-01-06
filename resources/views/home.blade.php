@@ -28,167 +28,175 @@
 
 <body class="bg-[url(/resources/images/parchment-background.jpg)] bg-cover">
 
-<div class="m-6 p-2 flex justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h1 class="w-fit font-[Barriecito] font-bold text-4xl text-center">
-        Dada Shakespeare
-    </h1>
-</div>
+<header class="flex justify-center mt-2">
+    <div class="m-6 p-2 flex justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
+        <h1 class="w-fit font-[Barriecito] font-bold text-4xl text-center">
+            Dada Shakespeare
+        </h1>
+    </div>
+</header>
 
-<div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h2 class="p-2 font-[Barriecito] font-bold text-2xl">What is this?</h2>
-    <p class="p-2">Welcome! This is Dada Shakespeare.
-        It's a tool to produce shuffled, randomised collages of Shakespeare's plays.</p>
-    <h2 class="p-2 font-[Barriecito] font-bold text-2xl">What?? Why??</h2>
-    <p class="p-2">For fun!</p>
-    <h2 class="p-2 font-[Barriecito] font-bold text-2xl">How do I use it?</h2>
-    <p class="p-2">Choose a play and choose how you'd like to shuffle it.</p>
-    <p class="p-2">Optionally, you can also remove a character who should be in that play, or add a character from another play who shouldn't be there.</p>
-    <p class="p-2">Save and share your result so you can gather a group of theatre folk and make them perform it for you (they'll
-        probably enjoy it).</p>
-    <h2 class="p-2 font-[Barriecito] font-bold text-2xl">What do the shuffle options do?</h2>
-    <p class="p-2">Shuffling every speech will return a completely randomised play
-        with none of the original act or scene order preserved -
-        any speech can (and will) appear at any point in the script.</p>
-    <p class="p-2">Shuffling speeches within each act will preserve the order of the acts only.
-        Act 1 will be followed by Act 2, etc.
-        Speeches within that act will appear in any order,
-        but you won't see a speech from Act 5 appear in Act 1.</p>
-    <p class="p-2">Shuffling speeches within each scene will preserve the order of both acts and scenes.
-        Act 1 Scene 1 will be followed by Act 1 Scene 2, etc.
-        Speeches within scenes will appear in any order,
-        but you won't see a speech from Act 1 Scene 1 appear in Act 1 Scene 2.</p>
-</div>
+<section class="flex justify-center">
+    <div class="m-6 p-8 bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
+        <h2 class="p-2 font-[Barriecito] font-bold text-2xl">What is this?</h2>
+        <p class="p-2">Welcome! This is Dada Shakespeare.
+            It's a tool to produce shuffled, randomised collages of Shakespeare's plays.</p>
+        <h2 class="p-2 font-[Barriecito] font-bold text-2xl">What?? Why??</h2>
+        <p class="p-2">For fun!</p>
+        <h2 class="p-2 font-[Barriecito] font-bold text-2xl">How do I use it?</h2>
+        <p class="p-2">Choose a play and choose how you'd like to shuffle it.</p>
+        <p class="p-2">Optionally, you can also remove a character who should be in that play, or add a character from another play who shouldn't be there.</p>
+        <p class="p-2">Save and share your result so you can gather a group of theatre folk and make them perform it for you (they'll
+            probably enjoy it).</p>
+        <h2 class="p-2 font-[Barriecito] font-bold text-2xl">What do the shuffle options do?</h2>
+        <p class="p-2">Shuffling every speech will return a completely randomised play
+            with none of the original act or scene order preserved -
+            any speech can (and will) appear at any point in the script.</p>
+        <p class="p-2">Shuffling speeches within each act will preserve the order of the acts only.
+            Act 1 will be followed by Act 2, etc.
+            Speeches within that act will appear in any order,
+            but you won't see a speech from Act 5 appear in Act 1.</p>
+        <p class="p-2">Shuffling speeches within each scene will preserve the order of both acts and scenes.
+            Act 1 Scene 1 will be followed by Act 1 Scene 2, etc.
+            Speeches within scenes will appear in any order,
+            but you won't see a speech from Act 1 Scene 1 appear in Act 1 Scene 2.</p>
+    </div>
+</section>
 
-<div class="flex flex-col items-center m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h2 class="md:text-center p-2 font-[Barriecito] font-bold text-2xl">How would you like to Dada Shakespeare?</h2>
+<section class="flex justify-center">
+    <div class="flex flex-col items-center m-6 p-8 bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
+        <h2 class="md:text-center p-2 font-[Barriecito] font-bold text-2xl">How would you like to Dada Shakespeare?</h2>
 
-    <form method="POST" action="{{ url('results') }}" class="w-full sm:w-[75%] md:w-[50%]">
-        @csrf
+        <form method="POST" action="{{ url('results') }}" class="w-full sm:w-[75%] md:w-[50%]">
+            @csrf
 
-        <div class="my-4">
-            <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Basic Dada (required)</h3>
+            <div class="mt-4 mb-10">
+                <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Basic Dada (required)</h3>
 
-            <div class="p-2 flex justify-between items-center">
-                <label for="title"
-                       class="font-semibold">
-                    Choose a play:
-                </label>
+                <div class="p-2 flex justify-between items-center">
+                    <label for="title"
+                           class="font-semibold">
+                        Choose a play:
+                    </label>
 
-                <div class="pl-2">
-                    <select name="title" id="title" onchange="handleFirstPlayChange()"
-                            class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                    <div class="pl-2">
+                        <select name="title" id="title" onchange="handleFirstPlayChange()"
+                                class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
                                outline-violet-800 focus:outline-green-400">
-                        <option value="">No play selected</option>
-                        @foreach ($works as $work)
-                            <option value="{{ $work->WorkID }}">{{ $work->Title }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-            <div>
-                @error('title')
-                <p class="text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="p-2 flex justify-between items-center">
-                <label for="shuffle"
-                       class="font-semibold">
-                    Choose how to shuffle:
-                </label>
-
-                <div class="pl-2">
-                    <select name="shuffle" id="shuffle"
-                            class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
-                               outline-violet-800 focus:outline-green-400">
-                        <option value="all">Shuffle every speech</option>
-                        <option value="act">Shuffle speeches within each act</option>
-                        <option value="scene">Shuffle speeches within each scene</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="mb-4">
-            <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Remove a character (optional)</h3>
-
-            <div class="p-2 flex justify-between items-center">
-                <label for="removeCharacter"
-                       class="font-semibold">
-                    Choose a character to remove:
-                </label>
-
-                <div class="pl-2">
-                    <select name="removeCharacter" id="removeCharacter"
-                            class="text-right text-balance outline-2 outline-solid rounded-lg w-48
-                                   outline-violet-800 focus:outline-green-400">
-                        <option value="">No character selected</option>
-                        @isset($firstPlayCharacters)
-                            @foreach($firstPlayCharacters as $character)
-                            <option value="{{ $character->CharID }}">{{ $character->CharName }}</option>
-                            @endforeach
-                        @endisset
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="mb-4">
-            <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Add a character (optional)</h3>
-
-            <div class="p-2 flex justify-between items-center">
-                <label for="secondPlay"
-                       class="font-semibold">
-                    Choose another play:
-                </label>
-
-                <div class="pl-2">
-                    <select name="secondPlay" id="secondPlay" onchange="handleAddCharacter()"
-                            class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
-                                   outline-violet-800 focus:outline-green-400">
-                        <option value="{{ $secondPlayValue }}">{{ $secondPlayTitle }}</option>
-                        @if($secondPlayValue != null)
                             <option value="">No play selected</option>
-                        @endif
-                        @foreach ($works as $work)
-                            @if(($firstPlay != $work->WorkID) && ($secondPlayValue != $work->WorkID))
+                            @foreach ($works as $work)
                                 <option value="{{ $work->WorkID }}">{{ $work->Title }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-            <div class="p-2 flex justify-between items-center">
-                <label for="addCharacter"
-                       class="font-semibold">
-                    Choose a character to add:
-                </label>
-
-                <div class="pl-2">
-                    <select name="addCharacter" id="addCharacter"
-                            class="text-right text-balance outline-2 outline-solid rounded-lg w-48
-                                   outline-violet-800 focus:outline-green-400">
-                        <option value="">No character selected</option>
-                        @isset($secondPlayCharacters)
-                            @foreach($secondPlayCharacters as $character)
-                                <option value="{{ $character->CharID }}">{{ $character->CharName }}</option>
                             @endforeach
-                        @endisset
-                    </select>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    @error('title')
+                    <p class="text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="p-2 flex justify-between items-center">
+                    <label for="shuffle"
+                           class="font-semibold">
+                        Choose how to shuffle:
+                    </label>
+
+                    <div class="pl-2">
+                        <select name="shuffle" id="shuffle"
+                                class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                               outline-violet-800 focus:outline-green-400">
+                            <option value="all">Shuffle every speech</option>
+                            <option value="act">Shuffle speeches within each act</option>
+                            <option value="scene">Shuffle speeches within each scene</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="w-full flex justify-center">
-            <input type="submit" value="Dada Shakespeare!" name="submit" id="submit"
-                   class="m-2 p-2 w-1/2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+            <div class="mb-4">
+                <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Remove a character (optional)</h3>
+
+                <div class="p-2 flex justify-between items-center">
+                    <label for="removeCharacter"
+                           class="font-semibold">
+                        Choose a character to remove:
+                    </label>
+
+                    <div class="pl-2">
+                        <select name="removeCharacter" id="removeCharacter"
+                                class="text-right text-balance outline-2 outline-solid rounded-lg w-48
+                                   outline-violet-800 focus:outline-green-400">
+                            <option value="">No character selected</option>
+                            @isset($firstPlayCharacters)
+                                @foreach($firstPlayCharacters as $character)
+                                    <option value="{{ $character->CharID }}">{{ $character->CharName }}</option>
+                                @endforeach
+                            @endisset
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Add a character (optional)</h3>
+
+                <div class="p-2 flex justify-between items-center">
+                    <label for="secondPlay"
+                           class="font-semibold">
+                        Choose another play:
+                    </label>
+
+                    <div class="pl-2">
+                        <select name="secondPlay" id="secondPlay" onchange="handleAddCharacter()"
+                                class="text-right text-balance outline-2 outline-solid rounded-lg w-48 field-sizing-content
+                                   outline-violet-800 focus:outline-green-400">
+                            <option value="{{ $secondPlayValue }}">{{ $secondPlayTitle }}</option>
+                            @if($secondPlayValue != null)
+                                <option value="">No play selected</option>
+                            @endif
+                            @foreach ($works as $work)
+                                @if(($firstPlay != $work->WorkID) && ($secondPlayValue != $work->WorkID))
+                                    <option value="{{ $work->WorkID }}">{{ $work->Title }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="p-2 flex justify-between items-center">
+                    <label for="addCharacter"
+                           class="font-semibold">
+                        Choose a character to add:
+                    </label>
+
+                    <div class="pl-2">
+                        <select name="addCharacter" id="addCharacter"
+                                class="text-right text-balance outline-2 outline-solid rounded-lg w-48
+                                   outline-violet-800 focus:outline-green-400">
+                            <option value="">No character selected</option>
+                            @isset($secondPlayCharacters)
+                                @foreach($secondPlayCharacters as $character)
+                                    <option value="{{ $character->CharID }}">{{ $character->CharName }}</option>
+                                @endforeach
+                            @endisset
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full flex justify-center">
+                <input type="submit" value="Dada Shakespeare!" name="submit" id="submit"
+                       class="m-2 p-2 w-1/2 cursor-pointer text-xl rounded-lg font-[Barriecito]
                     bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
-        </div>
+            </div>
 
-    </form>
-</div>
+        </form>
+    </div>
+</section>
+
+
 
 </body>
 </html>
