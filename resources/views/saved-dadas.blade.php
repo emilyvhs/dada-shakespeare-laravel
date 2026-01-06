@@ -28,8 +28,11 @@
     <script defer>
 
         async function copyToClipboard(url) {
+            const copyMessage = document.querySelector(".copy-message");
+
             try {
                 await navigator.clipboard.writeText(url);
+                copyMessage.classList.remove("hidden");
             } catch(error) {
                 console.warn('Unable to copy', error);
             }
@@ -62,7 +65,7 @@
     <div class="mx-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
         <p class="text-xl font-[Barriecito]">This Dada has been saved!</p>
         <p class="mb-2">Bookmark this page to access it again, or copy the link below to share with friends.</p>
-        <div class="flex gap-2">
+        <div class="flex gap-2 items-center">
             <input type="text" value="{{ url()->current() }}" readonly
                    class="text-right text-balance p-2 outline-2 outline-solid rounded-lg field-sizing-content
                                    outline-violet-800 focus:outline-green-400"/>
@@ -71,6 +74,7 @@
                   bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
                 Copy link!
             </button>
+            <p class="copy-message text-green-400 hidden">Copied!</p>
         </div>
     </div>
 </section>
