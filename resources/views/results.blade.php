@@ -25,133 +25,154 @@
         @endif
     </head>
 
-<body class="bg-[url(/resources/images/parchment-background.jpg)]">
+<body class="bg-[url(/resources/images/parchment-background.jpg)]" id="top">
 
-<nav class="mx-2 mt-2 flex gap-2 items-center">
-    <a href="/"
-       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+<nav class="mx-2 mt-2 flex items-center justify-between relative">
+    <div class="flex gap-2">
+        <a href="/"
+           class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
               bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-        Dada again!
-    </a>
+            Dada again!
+        </a>
 
-    <form method="POST" action="{{ url('/add') }}">
-        @csrf
-        <div class="w-full flex justify-center">
-            <input type="submit" value="Save this Dada" name="submit" id="submit"
-                               class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
+        <form method="POST" action="{{ url('/add') }}">
+            @csrf
+            <div class="w-full flex justify-center">
+                <input type="submit" value="Save this Dada" name="submit" id="submit"
+                       class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
                           bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800"/>
-        </div>
-    </form>
+            </div>
+        </form>
+    </div>
+
+    <div class="fixed top-4 right-3">
+        <a href="#top" aria-label="Jump to top of page"
+           class="py-2 px-5 cursor-pointer text-3xl rounded-lg font-[Barriecito] font-bold
+              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+            ^
+        </a>
+    </div>
 </nav>
 
 {{--title of play and Dada settings--}}
-<div class="m-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h1 class="font-[Barriecito] font-bold text-4xl text-center">
-        {{ $title }} <br>
-        by William Shakespeare
-    </h1>
+<header class="flex justify-center mt-2">
+    <div class="m-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
+        <h1 class="font-[Barriecito] font-bold text-4xl text-center">
+            {{ $title }} <br>
+            by William Shakespeare
+        </h1>
 
-    <h2 class="p-2 font-[Barriecito] font-bold text-2xl text-center">
-        @isset($removedCharacterName)
-            presented without {{ $removedCharacterName }},
-            <br>
-        @endisset
+        <h2 class="p-2 font-[Barriecito] font-bold text-2xl text-center">
+            @isset($removedCharacterName)
+                presented without {{ $removedCharacterName }},
+                <br>
+            @endisset
 
-        @isset($addedCharacterName)
-            featuring {{ $addedCharacterName }} from {{ $secondPlayTitle }},
-            <br>
-        @endisset
+            @isset($addedCharacterName)
+                featuring {{ $addedCharacterName }} from {{ $secondPlayTitle }},
+                <br>
+            @endisset
 
-        @if((!$removedCharacterName) && (!$addedCharacterName))
-            featuring the original cast of players,
-            <br>
-        @endif
+            @if((!$removedCharacterName) && (!$addedCharacterName))
+                featuring the original cast of players,
+                <br>
+            @endif
 
-        @if($shuffle === 'all')
-            with every speech shuffled
-        @endif
+            @if($shuffle === 'all')
+                with every speech shuffled
+            @endif
 
-        @if($shuffle === 'act')
-            with the speeches shuffled within each act
-        @endif
+            @if($shuffle === 'act')
+                with the speeches shuffled within each act
+            @endif
 
-        @if($shuffle === 'scene')
-            with the speeches shuffled within each scene
-        @endif
-    </h2>
-</div>
+            @if($shuffle === 'scene')
+                with the speeches shuffled within each scene
+            @endif
+        </h2>
+    </div>
+</header>
 
 {{--character list--}}
-<div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h2 class="p-2 font-[Barriecito] font-bold text-2xl">Characters</h2>
-    @foreach($characters as $character)
-        <p class="px-2">{{ $character->CharName }}</p>
-    @endforeach
-</div>
-
-{{--if shuffling within each scene--}}
-@if($shuffle === 'scene')
-
-    <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    @foreach($shuffledParagraphs as $paragraph)
-
-        @if ($loop->first)
-            <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
-            <br>
-            @php $actScene = $paragraph @endphp
-        @endif
-
-        @if ($paragraph->Section != $actScene->Section ||
-             $paragraph->Chapter != $actScene->Chapter)
-            <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
-            <br>
-            @php $actScene = $paragraph @endphp
-        @endif
-
-        <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
-        <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
-        <br>
-
-    @endforeach
+<section class="flex justify-center">
+    <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%] text-center">
+        <h2 class="p-2 font-[Barriecito] font-bold text-2xl">Characters</h2>
+        @foreach($characters as $character)
+            <p class="px-2">{{ $character->CharName }}</p>
+        @endforeach
     </div>
-@endif
+</section>
 
-{{--if shuffling within each act--}}
-@if($shuffle === 'act')
-    <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    @foreach($shuffledParagraphs as $paragraph)
+<section class="flex justify-center">
 
-        @if ($loop->first)
-            <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
-            <br>
-            @php $act = $paragraph @endphp
-        @endif
+    {{--if shuffling within each scene--}}
+    @if($shuffle === 'scene')
 
-        @if ($paragraph->Section != $act->Section)
-            <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
-            <br>
-            @php $act = $paragraph @endphp
-        @endif
-
-        <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
-        <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
-        <br>
-
-    @endforeach
-    </div>
-@endif
-
-{{--if shuffling every speech--}}
-@if ($shuffle === 'all')
-    <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-        <br>
+        <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
         @foreach($shuffledParagraphs as $paragraph)
+
+            @if ($loop->first)
+                <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
+                <br>
+                @php $actScene = $paragraph @endphp
+            @endif
+
+            @if ($paragraph->Section != $actScene->Section ||
+                 $paragraph->Chapter != $actScene->Chapter)
+                <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
+                <br>
+                @php $actScene = $paragraph @endphp
+            @endif
+
             <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
             <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
             <br>
+
         @endforeach
-    </div>
-@endif
+        </div>
+    @endif
+
+    {{--if shuffling within each act--}}
+    @if($shuffle === 'act')
+        <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
+        @foreach($shuffledParagraphs as $paragraph)
+
+            @if ($loop->first)
+                <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
+                <br>
+                @php $act = $paragraph @endphp
+            @endif
+
+            @if ($paragraph->Section != $act->Section)
+                <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
+                <br>
+                @php $act = $paragraph @endphp
+            @endif
+
+            <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
+            <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
+            <br>
+
+        @endforeach
+        </div>
+    @endif
+
+    {{--if shuffling every speech--}}
+    @if ($shuffle === 'all')
+        <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
+            <br>
+            @foreach($shuffledParagraphs as $paragraph)
+                <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
+                <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
+                <br>
+            @endforeach
+        </div>
+    @endif
+</section>
+
+<footer class="mt-10 p-2 bg-black shadow-xl ring-6 ring-black/50 text-right sm:text-center text-white text-sm">
+    <p>Created by <a href="https://emilyvhs.com/" class="underline font-bold hover:text-green-400">Emily VHS</a> using the <a href="https://www.opensourceshakespeare.org/" class="underline font-bold hover:text-green-400">Open Source Shakespeare</a> database </p>
+</footer>
 
 </body>
 </html>

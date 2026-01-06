@@ -39,144 +39,162 @@
 
 </head>
 
-<body class="bg-[url(/resources/images/parchment-background.jpg)]">
+<body class="bg-[url(/resources/images/parchment-background.jpg)]" id="top">
 
-<nav class="mx-2 mt-2 flex gap-2 items-center">
+<nav class="mx-2 mt-2 flex gap-2 items-center justify-between relative">
     <a href="/"
        class="p-2 cursor-pointer text-xl rounded-lg font-[Barriecito]
               bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
         Dada again!
     </a>
+
+    <div class="fixed top-4 right-3">
+        <a href="#top" aria-label="Jump to top of page"
+           class="py-2 px-5 cursor-pointer text-3xl rounded-lg font-[Barriecito] font-bold
+              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+            ^
+        </a>
+    </div>
 </nav>
 
 {{--link to copy saved Dada--}}
-<div class="m-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <p class="text-xl font-[Barriecito]">This Dada has been saved!</p>
-    <p class="mb-2">Bookmark this page to access it again, or copy the link below to share with friends.</p>
-    <div class="flex gap-2">
-        <input type="text" value="{{ url()->current() }}" readonly
-               class="text-right text-balance p-2 outline-2 outline-solid rounded-lg field-sizing-content
-                               outline-violet-800 focus:outline-green-400"/>
-        <button id="copyUrlButton" onclick="copyToClipboard('{{ url()->current() }}')"
-                class="p-2 cursor-pointer rounded-lg font-[Barriecito]
-              bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
-            Copy link!
-        </button>
+<section class="flex justify-center">
+    <div class="mx-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
+        <p class="text-xl font-[Barriecito]">This Dada has been saved!</p>
+        <p class="mb-2">Bookmark this page to access it again, or copy the link below to share with friends.</p>
+        <div class="flex gap-2">
+            <input type="text" value="{{ url()->current() }}" readonly
+                   class="text-right text-balance p-2 outline-2 outline-solid rounded-lg field-sizing-content
+                                   outline-violet-800 focus:outline-green-400"/>
+            <button id="copyUrlButton" onclick="copyToClipboard('{{ url()->current() }}')"
+                    class="p-2 cursor-pointer rounded-lg font-[Barriecito]
+                  bg-violet-800 text-green-400 hover:bg-green-400 hover:text-violet-800">
+                Copy link!
+            </button>
+        </div>
     </div>
-</div>
+</section>
 
 {{--title of play and Dada settings--}}
-<div class="m-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h1 class="font-[Barriecito] font-bold text-4xl text-center">
-        {{ $savedDada->first_play_title->LongTitle }} <br>
-        by William Shakespeare
-    </h1>
+<header class="flex justify-center mt-2">
+    <div class="m-6 p-2 flex flex-col justify-center bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
+        <h1 class="font-[Barriecito] font-bold text-4xl text-center">
+            {{ $savedDada->first_play_title->LongTitle }} <br>
+            by William Shakespeare
+        </h1>
 
-    <h2 class="p-2 font-[Barriecito] font-bold text-2xl text-center">
-    @isset($savedDada->remove_character_name->CharName)
-        presented without {{ $savedDada->remove_character_name->CharName }},
-        <br>
-    @endisset
+        <h2 class="p-2 font-[Barriecito] font-bold text-2xl text-center">
+        @isset($savedDada->remove_character_name->CharName)
+            presented without {{ $savedDada->remove_character_name->CharName }},
+            <br>
+        @endisset
 
-    @isset($savedDada->add_character_name->CharName)
-        featuring {{ $savedDada->add_character_name->CharName }} from {{ $savedDada->second_play_title->LongTitle }},
-        <br>
-    @endisset
+        @isset($savedDada->add_character_name->CharName)
+            featuring {{ $savedDada->add_character_name->CharName }} from {{ $savedDada->second_play_title->LongTitle }},
+            <br>
+        @endisset
 
-    @if((!$savedDada->remove_character_name) && (!$savedDada->add_character_name))
-        featuring the original cast of players,
-        <br>
-    @endif
+        @if((!$savedDada->remove_character_name) && (!$savedDada->add_character_name))
+            featuring the original cast of players,
+            <br>
+        @endif
 
-    @if($savedDada->shuffle === 'all')
-        with every speech shuffled
-    @endif
+        @if($savedDada->shuffle === 'all')
+            with every speech shuffled
+        @endif
 
-    @if($savedDada->shuffle === 'act')
-        with the speeches shuffled within each act
-    @endif
+        @if($savedDada->shuffle === 'act')
+            with the speeches shuffled within each act
+        @endif
 
-    @if($savedDada->shuffle === 'scene')
-        with the speeches shuffled within each scene
-    @endif
+        @if($savedDada->shuffle === 'scene')
+            with the speeches shuffled within each scene
+        @endif
 
-    </h2>
-</div>
+        </h2>
+    </div>
+</header>
 
 {{--character list--}}
-<div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-    <h2 class="p-2 font-[Barriecito] font-bold text-2xl">Characters</h2>
-    @foreach($characters as $character)
-        <p class="px-2">{{ $character->CharName }}</p>
-    @endforeach
-</div>
-
-{{--if shuffling within each scene--}}
-@if($savedDada->shuffle === 'scene')
-
-    <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-
-
-
-        @foreach($shuffledParagraphs as $paragraph)
-
-            @if ($loop->first)
-                <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
-                <br>
-                @php $actScene = $paragraph @endphp
-            @endif
-
-            @if ($paragraph->Section != $actScene->Section ||
-                 $paragraph->Chapter != $actScene->Chapter)
-                <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
-                <br>
-                @php $actScene = $paragraph @endphp
-            @endif
-
-            <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
-            <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
-            <br>
-
+<section class="flex justify-center">
+    <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%] text-center">
+        <h2 class="p-2 font-[Barriecito] font-bold text-2xl">Characters</h2>
+        @foreach($characters as $character)
+            <p class="px-2">{{ $character->CharName }}</p>
         @endforeach
     </div>
-@endif
+</section>
 
-{{--if shuffling within each act--}}
-@if($savedDada->shuffle === 'act')
-    <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-        @foreach($shuffledParagraphs as $paragraph)
+<section class="flex justify-center">
+    {{--if shuffling within each scene--}}
+    @if($savedDada->shuffle === 'scene')
 
-            @if ($loop->first)
-                <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
+        <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
+
+            @foreach($shuffledParagraphs as $paragraph)
+
+                @if ($loop->first)
+                    <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
+                    <br>
+                    @php $actScene = $paragraph @endphp
+                @endif
+
+                @if ($paragraph->Section != $actScene->Section ||
+                     $paragraph->Chapter != $actScene->Chapter)
+                    <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }} Scene {{ $paragraph->Chapter }}</h3>
+                    <br>
+                    @php $actScene = $paragraph @endphp
+                @endif
+
+                <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
+                <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
                 <br>
-                @php $act = $paragraph @endphp
-            @endif
 
-            @if ($paragraph->Section != $act->Section)
-                <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
+            @endforeach
+        </div>
+    @endif
+
+    {{--if shuffling within each act--}}
+    @if($savedDada->shuffle === 'act')
+        <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
+            @foreach($shuffledParagraphs as $paragraph)
+
+                @if ($loop->first)
+                    <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
+                    <br>
+                    @php $act = $paragraph @endphp
+                @endif
+
+                @if ($paragraph->Section != $act->Section)
+                    <h3 class="p-2 font-[Barriecito] font-bold text-xl text-center">Act {{ $paragraph->Section }}</h3>
+                    <br>
+                    @php $act = $paragraph @endphp
+                @endif
+
+                <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
+                <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
                 <br>
-                @php $act = $paragraph @endphp
-            @endif
 
-            <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
-            <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
+            @endforeach
+        </div>
+    @endif
+
+    {{--if shuffling every speech--}}
+    @if ($savedDada->shuffle === 'all')
+        <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg w-full md:w-[75%]">
             <br>
+            @foreach($shuffledParagraphs as $paragraph)
+                <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
+                <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
+                <br>
+            @endforeach
+        </div>
+    @endif
+</section>
 
-        @endforeach
-    </div>
-@endif
-
-{{--if shuffling every speech--}}
-@if ($savedDada->shuffle === 'all')
-    <div class="m-6 p-2 bg-white shadow-xl ring-6 ring-white/50 rounded-lg">
-        <br>
-        @foreach($shuffledParagraphs as $paragraph)
-            <p class="px-2 font-bold">{{ strtoupper(str_replace("(stage directions)", "", $paragraph->CharName)) }}</p>
-            <p class="px-2 whitespace-pre-line">{{ str_replace("[p]", "", $paragraph->PlainText) }}</p>
-            <br>
-        @endforeach
-    </div>
-@endif
+<footer class="mt-10 p-2 bg-black shadow-xl ring-6 ring-black/50 text-right sm:text-center text-white text-sm">
+    <p>Created by <a href="https://emilyvhs.com/" class="underline font-bold hover:text-green-400">Emily VHS</a> using the <a href="https://www.opensourceshakespeare.org/" class="underline font-bold hover:text-green-400">Open Source Shakespeare</a> database </p>
+</footer>
 
 </body>
 </html>
