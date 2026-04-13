@@ -35,8 +35,8 @@ class ParagraphApiController extends Controller
 
     public function selectedPlay(string $WorkID): JsonResponse
     {
-        $paragraphList = DB::table('Paragraphs')
-            ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
+        $paragraphList = DB::table('paragraphs')
+            ->leftJoin('characters', 'paragraphs.CharID', '=', 'characters.CharID')
             ->where('WorkID', '=', $WorkID)
             ->orderBy('ParagraphNum')
             ->get();
@@ -56,7 +56,7 @@ class ParagraphApiController extends Controller
 
     public function selectedCharacter(string $CharID): JsonResponse
     {
-        $paragraphList = DB::table('Paragraphs')
+        $paragraphList = DB::table('paragraphs')
             ->where('CharID', '=', $CharID)
             ->orderBy('ParagraphNum')
             ->get();
@@ -75,8 +75,8 @@ class ParagraphApiController extends Controller
 
     public function shuffleSelectedPlay(string $WorkID): JsonResponse
     {
-        $shuffledParagraphList = DB::table('Paragraphs')
-            ->leftJoin('Characters', 'Paragraphs.CharID', '=', 'Characters.CharID')
+        $shuffledParagraphList = DB::table('paragraphs')
+            ->leftJoin('characters', 'paragraphs.CharID', '=', 'characters.CharID')
             ->where('WorkID', '=', $WorkID)
             ->inRandomOrder()
             ->get();
@@ -95,7 +95,7 @@ class ParagraphApiController extends Controller
 
     public function shuffleSelectedCharacter(string $CharID): JsonResponse
     {
-        $shuffledParagraphList = DB::table('Paragraphs')
+        $shuffledParagraphList = DB::table('paragraphs')
             ->where('CharID', '=', $CharID)
             ->inRandomOrder()
             ->get();

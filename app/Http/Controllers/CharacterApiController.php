@@ -35,7 +35,7 @@ class CharacterApiController extends Controller
 
     public function selectedPlay(string $WorkID): JsonResponse
     {
-        $characterList = DB::table('Characters')
+        $characterList = DB::table('characters')
             ->where('Works', 'LIKE', "%$WorkID%")
             ->get();
 
