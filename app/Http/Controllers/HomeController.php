@@ -18,7 +18,7 @@ class HomeController extends Controller
         //retrieve firstPlay from session
         if ($request->session()->has('firstPlay')) {
             $firstPlay = $request->session()->pull('firstPlay');
-            $firstPlayCharacters = DB::table('Characters')
+            $firstPlayCharacters = DB::table('characters')
                 ->where('Works', 'LIKE', "%$firstPlay%")
                 //exclude CharNames that refer to groups of already listed characters/stage directions
                 ->whereNotIn('CharName', ['All', 'All Citizens', 'All Conspirators', 'All Ladies', 'All Lords', 'All Servants', 'All The People', 'Another', 'Both', 'Both Citizens', 'Both Tribunes', 'Brothers', 'Several Citizens', 'Some Speak', '(stage directions)'])
@@ -31,10 +31,10 @@ class HomeController extends Controller
         //retrieve secondPlay from session
         if ($request->session()->has('secondPlay')) {
             $secondPlayValue = $request->session()->pull('secondPlay');
-            $secondPlayTitle = DB::table('Works')
+            $secondPlayTitle = DB::table('works')
                 ->where('WorkID', '=', $secondPlayValue)
                 ->value('Title');
-            $secondPlayCharacters = DB::table('Characters')
+            $secondPlayCharacters = DB::table('characters')
                 ->where('Works', 'LIKE', "%$secondPlayValue%")
                 //exclude CharNames that refer to groups of already listed characters/stage directions
                 ->whereNotIn('CharName', ['All', 'All Citizens', 'All Conspirators', 'All Ladies', 'All Lords', 'All Servants', 'All The People', 'Another', 'Both', 'Both Citizens', 'Both Tribunes', 'Brothers', 'Several Citizens', 'Some Speak', '(stage directions)'])
